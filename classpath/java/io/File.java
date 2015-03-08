@@ -110,19 +110,19 @@ public class File implements Serializable {
   public boolean isFile() {
     return isFile(path);
   }
-  
+
   public boolean isAbsolute() {
     return path.equals(toAbsolutePath(path));
   }
-  
+
   private static native boolean canRead(String path);
-  
+
   public boolean canRead() {
     return canRead(path);
   }
 
   private static native boolean canWrite(String path);
-  
+
   public boolean canWrite() {
     return canWrite(path);
   }
@@ -142,7 +142,7 @@ public class File implements Serializable {
   public boolean setExecutable(boolean executable, boolean ownerOnly) {
     return setExecutable(path, executable, ownerOnly);
   }
-  
+
   public String getName() {
     int index = path.lastIndexOf(FileSeparator);
     if (index >= 0) {
@@ -166,7 +166,7 @@ public class File implements Serializable {
       return normalize(path.substring(0, index));
     } else {
       return null;
-    }    
+    }
   }
 
   public File getParentFile() {
@@ -314,7 +314,7 @@ public class File implements Serializable {
   private static class Pair {
     public final String value;
     public final Pair next;
-    
+
     public Pair(String value, Pair next) {
       this.value = value;
       this.next = next;

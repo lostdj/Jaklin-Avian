@@ -23,6 +23,7 @@ import java.util.Properties;
 
 public abstract class System {
   private static final long NanoTimeBaseInMillis = currentTimeMillis();
+  // private static final long NanoTimeBaseInMillis = 0; /*mymod*/ // = currentTimeMillis();
   
   private static class Static {
     public static Properties properties = makeProperties();

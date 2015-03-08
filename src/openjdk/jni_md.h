@@ -11,7 +11,9 @@
 #ifndef JNI_MD_H
 #define JNI_MD_H
 
-#include "stdint.h"
+//mymod
+//#include "stdint.h"
+#include <cph/cph.h>
 
 #if (defined __MINGW32__) || (defined _MSC_VER)
 #define JNIEXPORT __declspec(dllexport)
@@ -23,8 +25,22 @@
 
 #define JNIIMPORT
 
-typedef int32_t jint;
-typedef int64_t jlong;
-typedef int8_t jbyte;
+//mymod
+//typedef int32_t jint;
+//typedef int64_t jlong;
+//typedef int8_t jbyte;
+typedef signed char jbyte;
+#if _cph_cc_msc
+  typedef signed   __int32 jint;
+  typedef signed   __int64 jlong;
+#elif _cph_cc_clang || _cph_cc_gnu
+  #if _cph_arch_32
+    typedef signed int         jint;
+    typedef signed long long   jlong;
+  #elif _cph_arch_64
+    typedef signed int         jint;
+    typedef signed long int    jlong;
+  #endif
+#endif
 
 #endif  // JNI_MD_H

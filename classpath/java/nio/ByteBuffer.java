@@ -16,6 +16,11 @@ public abstract class ByteBuffer
 {
   private final boolean readOnly;
 
+	//mymod: added
+	//+stolen ojdk
+	ByteOrder endian = ByteOrder.BIG_ENDIAN;
+	//-stolen ojdk
+
   protected ByteBuffer(boolean readOnly) {
     this.readOnly = readOnly;
   }
@@ -63,7 +68,7 @@ public abstract class ByteBuffer
 
     position = remaining;
     limit(capacity());
-    
+
     return this;
   }
 
@@ -123,28 +128,64 @@ public abstract class ByteBuffer
     return put(arr, 0, arr.length);
   }
 
+	//mymod: added
+	private void rawPutDouble(int position, double val) {
+		//mymod
+		Bits.putDouble(this, position, val, endian == ByteOrder.BIG_ENDIAN);
+	}
+
+	//mymod: added
+	private void rawPutFloat(int position, float val) {
+		//mymod
+		Bits.putFloat(this, position, val, endian == ByteOrder.BIG_ENDIAN);
+	}
+
   private void rawPutLong(int position, long val) {
-    doPut(position    , (byte) ((val >> 56) & 0xff));
-    doPut(position + 1, (byte) ((val >> 48) & 0xff));
-    doPut(position + 2, (byte) ((val >> 40) & 0xff));
-    doPut(position + 3, (byte) ((val >> 32) & 0xff));
-    doPut(position + 4, (byte) ((val >> 24) & 0xff));
-    doPut(position + 5, (byte) ((val >> 16) & 0xff));
-    doPut(position + 6, (byte) ((val >>  8) & 0xff));
-    doPut(position + 7, (byte) ((val      ) & 0xff));
+		//mymod
+		Bits.putLong(this, position, val, endian == ByteOrder.BIG_ENDIAN);
+//    doPut(position    , (byte) ((val >> 56) & 0xff));
+//    doPut(position + 1, (byte) ((val >> 48) & 0xff));
+//    doPut(position + 2, (byte) ((val >> 40) & 0xff));
+//    doPut(position + 3, (byte) ((val >> 32) & 0xff));
+//    doPut(position + 4, (byte) ((val >> 24) & 0xff));
+//    doPut(position + 5, (byte) ((val >> 16) & 0xff));
+//    doPut(position + 6, (byte) ((val >>  8) & 0xff));
+//    doPut(position + 7, (byte) ((val      ) & 0xff));
   }
 
   private void rawPutInt(int position, int val) {
-    doPut(position    , (byte) ((val >> 24) & 0xff));
-    doPut(position + 1, (byte) ((val >> 16) & 0xff));
-    doPut(position + 2, (byte) ((val >>  8) & 0xff));
-    doPut(position + 3, (byte) ((val      ) & 0xff));
+		//mymod
+		Bits.putInt(this, position, val, endian == ByteOrder.BIG_ENDIAN);
+//    doPut(position    , (byte) ((val >> 24) & 0xff));
+//    doPut(position + 1, (byte) ((val >> 16) & 0xff));
+//    doPut(position + 2, (byte) ((val >>  8) & 0xff));
+//    doPut(position + 3, (byte) ((val      ) & 0xff));
   }
 
   private void rawPutShort(int position, short val) {
-    doPut(position    , (byte) ((val >> 8) & 0xff));
-    doPut(position + 1, (byte) ((val     ) & 0xff));
+		//mymod
+		Bits.putShort(this, position, val, endian == ByteOrder.BIG_ENDIAN);
+//    doPut(position    , (byte) ((val >> 8) & 0xff));
+//    doPut(position + 1, (byte) ((val     ) & 0xff));
   }
+
+	//mymod: added
+	public ByteBuffer putDouble(int position, double val) {
+		checkPut(position, 8, true);
+
+		rawPutDouble(position, val);
+
+		return this;
+	}
+
+	//mymod: added
+	public ByteBuffer putFloat(int position, float val) {
+		checkPut(position, 4, true);
+
+		rawPutFloat(position, val);
+
+		return this;
+	}
 
   public ByteBuffer putLong(int position, long val) {
     checkPut(position, 8, true);
@@ -169,6 +210,24 @@ public abstract class ByteBuffer
 
     return this;
   }
+
+	//mymod: added
+	public ByteBuffer putDouble(double val) {
+		checkPut(position, 8, false);
+
+		rawPutDouble(position, val);
+		position += 8;
+		return this;
+	}
+
+	//mymod: added
+	public ByteBuffer putFloat(float val) {
+		checkPut(position, 4, false);
+
+		rawPutDouble(position, val);
+		position += 4;
+		return this;
+	}
 
   public ByteBuffer putLong(long val) {
     checkPut(position, 8, false);
@@ -208,6 +267,20 @@ public abstract class ByteBuffer
     return get(dst, 0, dst.length);
   }
 
+	//mymod: added
+	public double getDouble(int position) {
+		checkGet(position, 8, true);
+
+		return rawGetDouble(position);
+	}
+
+	//mymod: added
+	public float getFloat(int position) {
+		checkGet(position, 4, true);
+
+		return rawGetFloat(position);
+	}
+
   public long getLong(int position) {
     checkGet(position, 8, true);
 
@@ -226,28 +299,62 @@ public abstract class ByteBuffer
     return rawGetShort(position);
   }
 
+	//mymod: added
+	private double rawGetDouble(int position) {
+		return Bits.getDouble(this, position, endian == ByteOrder.BIG_ENDIAN);
+	}
+
+	//mymod: added
+	private float rawGetFloat(int position) {
+		return Bits.getFloat(this, position, endian == ByteOrder.BIG_ENDIAN);
+	}
+
   private long rawGetLong(int position) {
-    return (((long) (doGet(position    ) & 0xFF)) << 56)
-      |    (((long) (doGet(position + 1) & 0xFF)) << 48)
-      |    (((long) (doGet(position + 2) & 0xFF)) << 40)
-      |    (((long) (doGet(position + 3) & 0xFF)) << 32)
-      |    (((long) (doGet(position + 4) & 0xFF)) << 24)
-      |    (((long) (doGet(position + 5) & 0xFF)) << 16)
-      |    (((long) (doGet(position + 6) & 0xFF)) <<  8)
-      |    (((long) (doGet(position + 7) & 0xFF))      );
+		//mymod
+		return Bits.getLong(this, position, endian == ByteOrder.BIG_ENDIAN);
+//		return (((long) (doGet(position    ) & 0xFF)) << 56)
+//			|    (((long) (doGet(position + 1) & 0xFF)) << 48)
+//			|    (((long) (doGet(position + 2) & 0xFF)) << 40)
+//			|    (((long) (doGet(position + 3) & 0xFF)) << 32)
+//			|    (((long) (doGet(position + 4) & 0xFF)) << 24)
+//			|    (((long) (doGet(position + 5) & 0xFF)) << 16)
+//			|    (((long) (doGet(position + 6) & 0xFF)) <<  8)
+//			|    (((long) (doGet(position + 7) & 0xFF))      );
   }
 
   private int rawGetInt(int position) {
-    return (((int) (doGet(position    ) & 0xFF)) << 24)
-      |    (((int) (doGet(position + 1) & 0xFF)) << 16)
-      |    (((int) (doGet(position + 2) & 0xFF)) <<  8)
-      |    (((int) (doGet(position + 3) & 0xFF))      );
+		//mymod
+		return Bits.getInt(this, position, endian == ByteOrder.BIG_ENDIAN);
+//    return (((int) (doGet(position    ) & 0xFF)) << 24)
+//      |    (((int) (doGet(position + 1) & 0xFF)) << 16)
+//      |    (((int) (doGet(position + 2) & 0xFF)) <<  8)
+//      |    (((int) (doGet(position + 3) & 0xFF))      );
   }
 
   private short rawGetShort(int position) {
-    return (short) ((  ((int) (doGet(position    ) & 0xFF)) << 8)
-                    | (((int) (doGet(position + 1) & 0xFF))     ));
+		//mymod
+		return Bits.getShort(this, position, endian == ByteOrder.BIG_ENDIAN);
+//    return (short) ((  ((int) (doGet(position    ) & 0xFF)) << 8)
+//                    | (((int) (doGet(position + 1) & 0xFF))     ));
   }
+
+	//mymod: added
+	public double getDouble() {
+		checkGet(position, 8, false);
+
+		double r = rawGetDouble(position);
+		position += 8;
+		return r;
+	}
+
+	//mymod: added
+	public float getFloat() {
+		checkGet(position, 4, false);
+
+		float r = rawGetFloat(position);
+		position += 4;
+		return r;
+	}
 
   public long getLong() {
     checkGet(position, 8, false);
@@ -294,11 +401,14 @@ public abstract class ByteBuffer
   }
 
   public ByteBuffer order(ByteOrder order) {
-    if (order != ByteOrder.BIG_ENDIAN) throw new UnsupportedOperationException();
+		//mymod
+		endian = order;
+//    if (order != ByteOrder.BIG_ENDIAN) throw new UnsupportedOperationException();
     return this;
   }
 
   public ByteOrder order() {
-    return ByteOrder.BIG_ENDIAN;
+		//mymod
+    return endian;//ByteOrder.BIG_ENDIAN;
   }
 }

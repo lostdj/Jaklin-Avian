@@ -14,6 +14,9 @@
 #include "avian/common.h"
 #include <avian/system/system.h>
 
+//mymod
+#include <myavn/embeddedres.h>
+
 namespace avian {
 namespace util {
 class Alloc;
@@ -210,6 +213,11 @@ Finder* makeFinder(System* s,
                    avian::util::Alloc* a,
                    const uint8_t* jarData,
                    unsigned jarLength);
+
+//mymod
+Finder* makeFinder(System* s,
+                   avian::util::Alloc* a,
+                   myavn::embeddedres **embCp);
 
 }  // namespace vm
 

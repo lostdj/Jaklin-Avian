@@ -170,3 +170,4 @@ extern "C" JNIEXPORT void JNICALL
 
   e->SetIntArrayRegion(results, 0, 3, resultArray);
 }
+

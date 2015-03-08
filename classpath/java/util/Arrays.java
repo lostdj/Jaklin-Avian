@@ -607,6 +607,53 @@ public class Arrays {
     }
   }
 
+	//mymod: added
+	//+stolen ojdk
+	private static void rangeCheck(int arrayLength, int fromIndex, int toIndex) {
+		if (fromIndex > toIndex) {
+			throw new IllegalArgumentException(
+				"fromIndex(" + fromIndex + ") > toIndex(" + toIndex + ")");
+		}
+		if (fromIndex < 0) {
+			throw new ArrayIndexOutOfBoundsException(fromIndex);
+		}
+		if (toIndex > arrayLength) {
+			throw new ArrayIndexOutOfBoundsException(toIndex);
+		}
+	}
+
+	public static void fill(byte[] a, int fromIndex, int toIndex, byte val) {
+		rangeCheck(a.length, fromIndex, toIndex);
+		for (int i = fromIndex; i < toIndex; i++)
+			a[i] = val;
+	}
+
+	public static void fill(float[] a, int fromIndex, int toIndex, float val) {
+		rangeCheck(a.length, fromIndex, toIndex);
+		for (int i = fromIndex; i < toIndex; i++)
+			a[i] = val;
+	}
+
+	static final class NaturalOrder implements Comparator<Object> {
+		@SuppressWarnings("unchecked")
+		public int compare(Object first, Object second) {
+			return ((Comparable<Object>)first).compareTo(second);
+		}
+		static final NaturalOrder INSTANCE = new NaturalOrder();
+	}
+
+	public static <T> void sort(T[] a, int fromIndex, int toIndex, Comparator<? super T> c) {
+		if (c == null)
+			c = NaturalOrder.INSTANCE;
+		rangeCheck(a.length, fromIndex, toIndex);
+		//mymod: commented out
+//		if (LegacyMergeSort.userRequested)
+//			legacyMergeSort(a, fromIndex, toIndex, c);
+//		else
+			TimSort.sort(a, fromIndex, toIndex, c, null, 0, 0);
+	}
+	//-stolen ojdk
+
   public static <T> void fill(T[] array, int start, int stop, T value) {
     checkRange(array.length, start, stop);
     for (int i=start;i<stop;i++) {

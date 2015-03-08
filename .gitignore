@@ -1,5 +1,6 @@
 .gdb_history
-/build
+.tags
+.tags_sorted_by_file
 *~
 .classpath
 .project
@@ -10,8 +11,8 @@ bin
 *.pdb
 *.swp
 /.gradle
-/*.sublime-*
-workspace/
-src/.cproject
-/cmake-build
-/cmake-build
+
+/out
+/**/out
+/*.class
+

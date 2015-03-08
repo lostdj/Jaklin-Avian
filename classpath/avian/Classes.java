@@ -568,10 +568,12 @@ public class Classes {
 
     return new ProtectionDomain(source, p);
   }
-
+  
   public static native Method makeMethod(Class c, int slot);
-
-  public static native Field makeField(Class c, int slot);
+  
+  //mymod not implemented in native
+  // public static native Field makeField(Class c, int slot);
+  public static Field makeField(Class c, int slot) {return null;}
 
   private static native void acquireClassLock();
 

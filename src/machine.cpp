@@ -25,8 +25,26 @@
 #include <windows.h>
 #endif
 
+#include <myavn/jni-args.h>
+#include <myavn/jni-meth.h>
+
 using namespace vm;
 using namespace avian::util;
+
+//mymod
+namespace myavn
+{
+  #if isdef(_myavn_mt)
+    static bool const mt = true;
+  #else
+    static bool const mt = false;
+
+    static Thread* t__ = null;
+  #endif
+
+  static const int _gccycles = 0;
+  static int _gccounter = _gccycles;
+}
 
 namespace {
 
@@ -703,6 +721,9 @@ void postCollect(Thread* t)
 
 uint64_t invoke(Thread* t, uintptr_t* arguments)
 {
+  //mymod
+  doifdef(_myavn_mt, , if(unlikely(!myavn::t__)) myavn::t__ = t);
+
   GcMethod* m = cast<GcMethod>(t, *reinterpret_cast<object*>(arguments[0]));
   object o = *reinterpret_cast<object*>(arguments[1]);
 
@@ -1099,6 +1120,9 @@ unsigned parsePoolEntry(Thread* t,
 
 GcSingleton* parsePool(Thread* t, Stream& s)
 {
+  //mymod
+  doifdef(_myavn_mt, , if(unlikely(!myavn::t__)) myavn::t__ = t);
+
   unsigned count = s.read2() - 1;
   GcSingleton* pool = makeSingletonOfSize(t, count + poolMaskSize(count));
   PROTECT(t, pool);
@@ -3486,7 +3510,16 @@ void doCollect(Thread* t, Heap::CollectionType type, int pendingAllocation)
     function(t, finalizeQueue->target());
   }
 
-  if ((roots(t)->objectsToFinalize() or roots(t)->objectsToClean())
+  //mymod
+  if(!myavn::mt
+      && (roots(t)->objectsToFinalize() or roots(t)->objectsToClean())
+      && t->state != Thread::ExitState)
+  {
+    m->finalizeThread = t;
+    runFinalizeThread(t);
+    m->finalizeThread = 0;
+  }
+  elif ((roots(t)->objectsToFinalize() or roots(t)->objectsToClean())
       and m->finalizeThread == 0 and t->state != Thread::ExitState) {
     m->finalizeThread = m->processor->makeThread(
         m, roots(t)->finalizerThread(), m->rootThread);
@@ -3609,6 +3642,43 @@ void updatePackageMap(Thread* t, GcClass* class_)
 
 namespace vm {
 
+  class DummyLibrary : public vm::System::Library
+  {
+  public:
+    DummyLibrary()
+      : next_(0)
+    {
+      ;
+    }
+
+    virtual void* resolve(const char*)
+    {
+      return 0;
+    }
+
+    virtual const char* name()
+    {
+      return 0;
+    }
+
+    virtual vm::System::Library* next()
+    {
+      return next_;
+    }
+
+    virtual void setNext(vm::System::Library* lib)
+    {
+      next_ = lib;
+    }
+
+    virtual void disposeAll()
+    {
+      ;
+    }
+
+    vm::System::Library* next_;
+  } dummylib;
+
 Machine::Machine(System* system,
                  Heap* heap,
                  Finder* bootFinder,
@@ -3688,6 +3758,8 @@ Machine::Machine(System* system,
                           = strchr(codeLibraryName, system->pathSeparator())))
     *codeLibraryNameEnd = 0;
 
+  libraries = &dummylib;
+
   if (not system->success(system->make(&localThread))
       or not system->success(system->make(&stateLock))
       or not system->success(system->make(&heapLock))
@@ -3707,11 +3779,48 @@ Machine::Machine(System* system,
 
     if (!system->success(system->load(&additionalLibrary, codeLibraryName)))
       system->abort();
-    libraries->setNext(additionalLibrary);
+    //mymod
+    addLib(additionalLibrary);
+//    libraries->setNext(additionalLibrary);
   }
 
   if (bootstrapPropertyDup)
     free((void*)bootstrapPropertyDup);
+}
+
+//mymod
+Machine::Machine(System* system,
+                 Heap* heap,
+                 Finder* bootFinder,
+                 Finder* appFinder,
+                 Processor* processor,
+                 Classpath* classpath,
+                 const char** properties,
+                 unsigned propertyCount,
+                 const char** arguments,
+                 unsigned argumentCount,
+                 unsigned stackSizeInBytes,
+                 cph::jni::JavaVMInitArgs* jvmargs)
+  : Machine(
+      system
+      ,heap
+      ,bootFinder
+      ,appFinder
+      ,processor
+      ,classpath
+      ,properties
+      ,propertyCount
+      ,arguments
+      ,argumentCount
+      ,stackSizeInBytes)
+{
+  using namespace myavn;
+
+  for(int i = 0; i < jvmargs->nOptions; ++i)
+    if(!jvmargs->options[i].extraInfo)
+      continue;
+    elif(jniarg::meths.eq(jvmargs->options[i].optionString))
+      addLib(cph::scast<meth::MethLibrary*>(jvmargs->options[i].extraInfo));
 }
 
 void Machine::dispose()
@@ -3751,6 +3860,21 @@ void Machine::dispose()
   static_cast<HeapClient*>(heapClient)->dispose();
 
   heap->free(this, sizeof(*this));
+}
+
+//mymod
+void Machine::addLib(System::Library *lib)
+{
+  if(!libraries)
+    libraries = lib;
+  else
+  {
+    System::Library* l = libraries;
+    while(l->next() != null)
+      l = l->next();
+
+    l->setNext(lib);
+  }
 }
 
 Thread::Thread(Machine* m, GcThread* javaThread, Thread* parent)
@@ -4304,12 +4428,19 @@ void collect(Thread* t, Heap::CollectionType type, int pendingAllocation)
     type = Heap::MajorCollection;
   }
 
-  doCollect(t, type, pendingAllocation);
+  //mymod
+  int64_t tm = t->m->system->now();
+  if(myavn::mt || type == Heap::MajorCollection || myavn::_gccounter-- < 1)
+    doCollect(t, type, pendingAllocation), myavn::_gccounter = myavn::_gccycles,
+  ::printf("*** gc: %d. cntr %d/%d\n", t->m->system->now() - tm
+           ,myavn::_gccounter, myavn::_gccycles);
 
   if (t->m->heap->limitExceeded(pending)) {
     // try once more, giving the heap a chance to squeeze everything
     // into the smallest possible space:
+    tm = t->m->system->now();
     doCollect(t, Heap::MajorCollection, pendingAllocation);
+    ::printf("*** gc2: %d\n", t->m->system->now() - tm);
   }
 }
 
@@ -4953,6 +5084,14 @@ GcClass* resolveClass(Thread* t,
                       bool throw_,
                       Gc::Type throwType)
 {
+  //mymod
+  if(!loader)
+  {
+    throwNew(t, throwType, "%s", spec->body().begin());
+
+    return null;
+  }
+
   if (objectClass(t, loader) == type(t, GcSystemClassLoader::Type)) {
     return resolveSystemClass(t, loader, spec, throw_, throwType);
   } else {
@@ -5163,6 +5302,9 @@ void postInitClass(Thread* t, GcClass* c)
     c->vmFlags() |= NeedInitFlag | InitErrorFlag;
     c->vmFlags() &= ~InitFlag;
 
+    //mymod
+//    printf("-------- teh exception --------\n");
+
     GcThrowable* exception = t->exception;
     t->exception = 0;
 
@@ -5179,9 +5321,16 @@ void postInitClass(Thread* t, GcClass* c)
   t->m->classLock->notifyAll(t->systemThread);
 }
 
+doifdef(_myavn_log_eeins, extern "C" bool logeeins);
+
 void initClass(Thread* t, GcClass* c)
 {
   PROTECT(t, c);
+
+  //mymod
+  // char* _nm = (char*)c->name()->body().begin();
+  // if(::strcmp(_nm, "sun/nio/ch/FileChannelImpl") == 0)
+  //   doifdef(_myavn_log_eeins, (printf("eelog on. \n"), logeeins = true));
 
   GcClass* super = c->super();
   if (super) {
@@ -5189,14 +5338,21 @@ void initClass(Thread* t, GcClass* c)
   }
 
   if (preInitClass(t, c)) {
+    //mymod
     OBJECT_RESOURCE(t, c, postInitClass(t, cast<GcClass>(t, c)));
+   // OBJECT_RESOURCE(t, c, /*printf("~ok1 %s\n", _nm); */GcClass *_c = cast<GcClass>(t, c); printf("~ok2 %s\n", _c->name()->body().begin()); postInitClass(t, _c); printf("~ok3 %s\n", _c->name()->body().begin()););
+   // printf("--------------%s\n", c->name()->body().begin());
+   // printf("ok0%s\n", c->name()->body().begin());
 
     GcMethod* initializer = classInitializer(t, c);
+   // printf("ok1 %s\n", c->name()->body().begin());
 
     if (initializer) {
       Thread::ClassInitStack stack(t, c);
+     // printf("ok2 %s\n", c->name()->body().begin());
 
       t->m->processor->invoke(t, initializer, 0);
+     // printf("ok3 %s\n", c->name()->body().begin());
     }
   }
 }
@@ -5699,6 +5855,26 @@ void runFinalizeThread(Thread* t)
   GcCleaner* cleanList = 0;
   PROTECT(t, cleanList);
 
+  //mymod
+  if(!myavn::mt)
+  {
+    finalizeList = roots(t)->objectsToFinalize();
+    roots(t)->setObjectsToFinalize(t, 0);
+
+    cleanList = roots(t)->objectsToClean();
+    roots(t)->setObjectsToClean(t, 0);
+
+    for (; finalizeList; finalizeList = finalizeList->queueNext()) {
+      finalizeObject(t, finalizeList->queueTarget(), "finalize");
+    }
+
+    for (; cleanList; cleanList = cleanList->queueNext()) {
+      finalizeObject(t, cleanList, "clean");
+    }
+
+    return;
+  }
+
   while (true) {
     {
       ACQUIRE(t, t->m->stateLock);
@@ -6059,6 +6235,14 @@ AVIAN_EXPORT void vmPrintTrace(Thread* t)
 {
   vmfPrintTrace(t, stderr);
 }
+
+//mymod
+#if !isdef(_myavn_mt)
+  extern "C" AVIAN_EXPORT void vmPrintTrace()
+  {
+    vmPrintTrace(myavn::t__);
+  }
+#endif
 
 // also for debugging
 AVIAN_EXPORT void* vmAddressFromLine(GcMethod* m, unsigned line)

@@ -944,6 +944,53 @@ extern "C" JNIEXPORT jint JNICALL
   return (jint)bytesRead;
 }
 
+//mymod: added
+extern "C" JNIEXPORT jint JNICALL
+    Java_java_io_RandomAccessFile_read__JJ(JNIEnv* e,
+                                            jclass,
+                                            jlong peer,
+                                            jlong position)
+{
+#if !defined(WINAPI_FAMILY) || WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+  int fd = (int)peer;
+  if (::lseek(fd, position, SEEK_SET) == -1) {
+    throwNewErrno(e, "java/io/IOException");
+    return -1;
+  }
+
+  uint8_t dst;
+  int64_t bytesRead = ::read(fd, &dst, 1);
+
+  if (bytesRead == -1) {
+    throwNewErrno(e, "java/io/IOException");
+    return -1;
+  }
+  else if (bytesRead == 0) {
+    return -1;
+  }
+#else
+  HANDLE hFile = (HANDLE)peer;
+  LARGE_INTEGER lPos;
+  lPos.QuadPart = position;
+  if (!SetFilePointerEx(hFile, lPos, nullptr, FILE_BEGIN)) {
+    throwNewErrno(e, "java/io/IOException");
+    return -1;
+  }
+
+  uint8_t dst;
+  DWORD bytesRead = 0;
+  if (!ReadFile(hFile, &dst, 1, &bytesRead, nullptr)) {
+    throwNewErrno(e, "java/io/IOException");
+    return -1;
+  }
+  else if (bytesRead == 0) {
+    return -1;
+  }
+#endif
+
+  return (jint)(dst & 0xFF);
+}
+
 extern "C" JNIEXPORT jint JNICALL
     Java_java_io_RandomAccessFile_writeBytes(JNIEnv* e,
                                              jclass,

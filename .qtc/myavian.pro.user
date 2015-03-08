@@ -1,0 +1,1096 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QtCreatorProject>
+<!-- Written by QtCreator 3.2.1, 2015-03-05T21:30:58. -->
+<qtcreator>
+ <data>
+  <variable>EnvironmentId</variable>
+  <value type="QByteArray">{410dcc24-0d86-49ef-ab08-df2f32d453c7}</value>
+ </data>
+ <data>
+  <variable>ProjectExplorer.Project.ActiveTarget</variable>
+  <value type="int">0</value>
+ </data>
+ <data>
+  <variable>ProjectExplorer.Project.EditorSettings</variable>
+  <valuemap type="QVariantMap">
+   <value type="bool" key="EditorConfiguration.AutoIndent">true</value>
+   <value type="bool" key="EditorConfiguration.AutoSpacesForTabs">false</value>
+   <value type="bool" key="EditorConfiguration.CamelCaseNavigation">true</value>
+   <valuemap type="QVariantMap" key="EditorConfiguration.CodeStyle.0">
+    <value type="QString" key="language">Cpp</value>
+    <valuemap type="QVariantMap" key="value">
+     <value type="QByteArray" key="CurrentPreferences">qt3</value>
+    </valuemap>
+   </valuemap>
+   <valuemap type="QVariantMap" key="EditorConfiguration.CodeStyle.1">
+    <value type="QString" key="language">QmlJS</value>
+    <valuemap type="QVariantMap" key="value">
+     <value type="QByteArray" key="CurrentPreferences">QmlJSGlobal</value>
+    </valuemap>
+   </valuemap>
+   <value type="int" key="EditorConfiguration.CodeStyle.Count">2</value>
+   <value type="QByteArray" key="EditorConfiguration.Codec">UTF-8</value>
+   <value type="bool" key="EditorConfiguration.ConstrainTooltips">false</value>
+   <value type="int" key="EditorConfiguration.IndentSize">2</value>
+   <value type="bool" key="EditorConfiguration.KeyboardTooltips">false</value>
+   <value type="int" key="EditorConfiguration.MarginColumn">80</value>
+   <value type="bool" key="EditorConfiguration.MouseHiding">true</value>
+   <value type="bool" key="EditorConfiguration.MouseNavigation">true</value>
+   <value type="int" key="EditorConfiguration.PaddingMode">1</value>
+   <value type="bool" key="EditorConfiguration.ScrollWheelZooming">true</value>
+   <value type="bool" key="EditorConfiguration.ShowMargin">true</value>
+   <value type="int" key="EditorConfiguration.SmartBackspaceBehavior">0</value>
+   <value type="bool" key="EditorConfiguration.SpacesForTabs">true</value>
+   <value type="int" key="EditorConfiguration.TabKeyBehavior">0</value>
+   <value type="int" key="EditorConfiguration.TabSize">2</value>
+   <value type="bool" key="EditorConfiguration.UseGlobal">false</value>
+   <value type="int" key="EditorConfiguration.Utf8BomBehavior">1</value>
+   <value type="bool" key="EditorConfiguration.addFinalNewLine">true</value>
+   <value type="bool" key="EditorConfiguration.cleanIndentation">true</value>
+   <value type="bool" key="EditorConfiguration.cleanWhitespace">true</value>
+   <value type="bool" key="EditorConfiguration.inEntireDocument">true</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>ProjectExplorer.Project.PluginSettings</variable>
+  <valuemap type="QVariantMap"/>
+ </data>
+ <data>
+  <variable>ProjectExplorer.Project.Target.0</variable>
+  <valuemap type="QVariantMap">
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{ef6c63e0-a7a8-4bee-af65-a7a374d26389}</value>
+   <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
+   <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
+   <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">10</value>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/mnt/zfs/levault/dev/p/jaklintop/myavn</value>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">false</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.Arguments">v=t _mf_tmpout=/letmp/myavianout platform=tux arch=x64 mode=debug all</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.Command">make</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.WorkingDirectory">%{buildDir}</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Custom Process Step</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.ProcessStep</value>
+     </valuemap>
+     <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Build</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Build</value>
+    </valuemap>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.1">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.Arguments">v=t clean</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.Command">make</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.WorkingDirectory">%{buildDir}</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Custom Process Step</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.ProcessStep</value>
+     </valuemap>
+     <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Clean</value>
+    </valuemap>
+    <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
+    <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">true</value>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges">
+     <value type="QString">XDG_VTNR=7</value>
+     <value type="QString">MANPATH=/home/ltp/.nix-profile/man:/home/ltp/.nix-profile/share/man:/nix/var/nix/profiles/default/man:/nix/var/nix/profiles/default/share/man:/run/current-system/sw/man:/run/current-system/sw/share/man</value>
+     <value type="QString">src=/nix/store/imjr1rp7smnzj9a6g4ppdzzgmvhfxmzf-myavian</value>
+     <value type="QString">NIX_PROFILES=/run/current-system/sw /nix/var/nix/profiles/default /home/ltp/.nix-profile</value>
+     <value type="QString">XDG_SESSION_ID=3</value>
+     <value type="QString">KDE_MULTIHEAD=false</value>
+     <value type="QString">NIX_CONF_DIR=/etc/nix</value>
+     <value type="QString">DM_CONTROL=/var/run/xdmctl</value>
+     <value type="QString">SSL_CERT_FILE=/etc/ssl/certs/ca-bundle.crt</value>
+     <value type="QString">LIBVA_DRIVERS_PATH=/nix/store/fmffdih25hj7pfc5k2r857fd72id0pa1-vaapi-drivers/lib/dri</value>
+     <value type="QString">QTWEBKIT_PLUGIN_PATH=/home/ltp/.nix-profile/lib/mozilla/plugins/:/nix/var/nix/profiles/default/lib/mozilla/plugins/:/run/current-system/sw/lib/mozilla/plugins/</value>
+     <value type="QString">propagatedBuildInputs=</value>
+     <value type="QString">SHELL=/nix/store/j9z585f73bl8i5r0q9pvzwanc7xh5fns-bash-4.2-p51/bin/bash</value>
+     <value type="QString">TERM=xterm</value>
+     <value type="QString">XDM_MANAGED=method=classic</value>
+     <value type="QString">TMPDIR=/tmp</value>
+     <value type="QString">KONSOLE_DBUS_SERVICE=:1.34</value>
+     <value type="QString">GTK2_RC_FILES=/etc/gtk-2.0/gtkrc:/home/ltp/.gtkrc-2.0:/home/ltp/.kde/share/config/gtkrc-2.0</value>
+     <value type="QString">KONSOLE_PROFILE_NAME=Shell</value>
+     <value type="QString">PERL5LIB=/home/ltp/.nix-profile/lib/perl5/site_perl:/nix/var/nix/profiles/default/lib/perl5/site_perl:/run/current-system/sw/lib/perl5/site_perl</value>
+     <value type="QString">GS_LIB=/home/ltp/.fonts</value>
+     <value type="QString">GTK_RC_FILES=/etc/gtk/gtkrc:/home/ltp/.gtkrc:/home/ltp/.kde/share/config/gtkrc</value>
+     <value type="QString">WINDOWID=46137370</value>
+     <value type="QString">OLDPWD=/mnt/zfs/levault/dev/s/myavian/out/tux-x64-debug/result</value>
+     <value type="QString">MODULE_DIR=/run/current-system/kernel-modules/lib/modules</value>
+     <value type="QString">builder=/nix/store/j9z585f73bl8i5r0q9pvzwanc7xh5fns-bash-4.2-p51/bin/bash</value>
+     <value type="QString">SHELL_SESSION_ID=61c5e54ac04b4000b7a44ac4eb023d46</value>
+     <value type="QString">NIX_CFLAGS_COMPILE= -isystem /nix/store/az3hqzm3p78mc54wk50rgnbrlklcpf8w-gdb-7.8/include -isystem /nix/store/9ikh5ifbi15iq2d9kcgmg28kzzzw2jx1-zlib-1.2.8/include -isystem /nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71/include</value>
+     <value type="QString">GIT_SSL_CAINFO=/etc/ssl/certs/ca-bundle.crt</value>
+     <value type="QString">KDE_FULL_SESSION=true</value>
+     <value type="QString">LOCATE_PATH=/var/cache/locatedb</value>
+     <value type="QString">name=avian</value>
+     <value type="QString">HISTFILESIZE=9000</value>
+     <value type="QString">USER=ltp</value>
+     <value type="QString">TEMP=/tmp</value>
+     <value type="QString">XCURSOR_SIZE=0</value>
+     <value type="QString">LD_LIBRARY_PATH=/run/opengl-driver/lib:/run/opengl-driver-32/lib:/nix/store/s1n8g01x9slks39amxigr6l21gz2kp6n-freetype-2.5.3/lib</value>
+     <value type="QString">nativeBuildInputs=/nix/store/q4kb35wfj35893z8qddlil98yc1akkgc-stdenv /nix/store/az3hqzm3p78mc54wk50rgnbrlklcpf8w-gdb-7.8 /nix/store/9ikh5ifbi15iq2d9kcgmg28kzzzw2jx1-zlib-1.2.8 /nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71 /nix/store/1fbfmb1j0jrrysw3j7i7c0qrzyiwg16s-emscripten-1.25.1</value>
+     <value type="QString">SSH_AUTH_SOCK=/run/user/1042/ssh-agent</value>
+     <value type="QString">NIX_REMOTE=daemon</value>
+     <value type="QString">NIX_STORE=/nix/store</value>
+     <value type="QString">stdenv=/nix/store/q4kb35wfj35893z8qddlil98yc1akkgc-stdenv</value>
+     <value type="QString">SESSION_MANAGER=local/lews:@/tmp/.ICE-unix/2588,unix/lews:/tmp/.ICE-unix/2588</value>
+     <value type="QString">PAGER=less -R</value>
+     <value type="QString">MOZ_PLUGIN_PATH=/home/ltp/.nix-profile/lib/mozilla/plugins:/nix/var/nix/profiles/default/lib/mozilla/plugins:/run/current-system/sw/lib/mozilla/plugins</value>
+     <value type="QString">system=x86_64-linux</value>
+     <value type="QString">XDG_CONFIG_DIRS=/home/ltp/.nix-profile/etc/xdg:/nix/var/nix/profiles/default/etc/xdg:/run/current-system/sw/etc/xdg</value>
+     <value type="QString">NIX_LDFLAGS=-rpath /nix/store/4ki1h1mw5mdc6zimv1fbvz06yxlrcabf-avian/lib64 -rpath /nix/store/4ki1h1mw5mdc6zimv1fbvz06yxlrcabf-avian/lib  -L/nix/store/az3hqzm3p78mc54wk50rgnbrlklcpf8w-gdb-7.8/lib -L/nix/store/9ikh5ifbi15iq2d9kcgmg28kzzzw2jx1-zlib-1.2.8/lib -L/nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71/lib</value>
+     <value type="QString">PATH=/nix/store/az3hqzm3p78mc54wk50rgnbrlklcpf8w-gdb-7.8/bin:/nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71/bin:/nix/store/1fbfmb1j0jrrysw3j7i7c0qrzyiwg16s-emscripten-1.25.1/bin:/nix/store/12k2cnlgppwzgwar7ipzpr9i6pv27rl0-gcc-wrapper-4.8.3/bin:/nix/store/mbq4nwsyjf3wpj00pxls75pikczizs16-coreutils-8.21/bin:/nix/store/0x2125kmj8b4mf9hzqpx39m0w8jjgy1i-findutils-4.4.2/bin:/nix/store/hpnr7bmm53ra23xl8q7735f3xnkgjnmr-diffutils-3.3/bin:/nix/store/pq0kvrsqsr1kfxmyx82yv4nfj3hk7hr0-gnused-4.2.2/bin:/nix/store/wy6rp99f93j720ara5j40gzf6vwprw78-gnugrep-2.14/bin:/nix/store/iz8jfz2x387pj57xfd8b463jhjbrx2w4-gawk-4.1.0/bin:/nix/store/vjkl65bpzl39nfskl31x43x4bwipfqg3-gnutar-1.27.1/bin:/nix/store/p0z2yw63cqwv0ics21s70ys4lc75swin-gzip-1.6/bin:/nix/store/qcpcs24jzqa0v7ks06f7289mx3ghsly8-bzip2-1.0.6/bin:/nix/store/y9sif6rflwy4djfn3g66iih7cymr45sg-gnumake-3.82/bin:/nix/store/j9z585f73bl8i5r0q9pvzwanc7xh5fns-bash-4.2-p51/bin:/nix/store/0mbdmymwvs4i04wvhd4plz51is4f1qbp-patch-2.7.1/bin:/nix/store/lla8bj7kp6v306hi8rykmgxzrk9ld6cs-xz-5.0.5/bin:/nix/store/7m9qqbjira607ym0rp0frwxhir9107dl-patchelf-0.8/bin:/nix/store/j3nqrsfrcl9n8pnmd4w9jy6viq8jbzr4-paxctl-0.9/sbin:/nix/store/n2zcibvfxg6k2wpiipd8bzmc46q0vjy6-gcc-4.8.3/bin:/nix/store/ycmsiznf2484vbjwmj57jdy2ncyrj7fj-binutils-2.23.1/bin:/nix/store/i11d0d4015p0vbdnjq7lb509v9pwp049-glibc-2.19/bin:/nix/store/mbq4nwsyjf3wpj00pxls75pikczizs16-coreutils-8.21/bin:/nix/store/8g01nx068j9csnlb3qlr56anihrkyqxp-kde-workspace-4.11.12/bin:/home/ltp/bin:/var/setuid-wrappers:/mnt/zfs/levault/bin/:/home/ltp/.nix-profile/bin:/home/ltp/.nix-profile/sbin:/home/ltp/.nix-profile/lib/kde4/libexec:/nix/var/nix/profiles/default/bin:/nix/var/nix/profiles/default/sbin:/nix/var/nix/profiles/default/lib/kde4/libexec:/run/current-system/sw/bin:/run/current-system/sw/sbin:/run/current-system/sw/lib/kde4/libexec</value>
+     <value type="QString">DESKTOP_SESSION=default</value>
+     <value type="QString">TERMINFO_DIRS=/home/ltp/.nix-profile/share/terminfo:/nix/var/nix/profiles/default/share/terminfo:/run/current-system/sw/share/terminfo</value>
+     <value type="QString">shellHook=              export JAVA_HOME=/nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71</value>
+     <value type="QString">TEMPDIR=/tmp</value>
+     <value type="QString">NIX_BUILD_TOP=/tmp</value>
+     <value type="QString">_INHIBITION_LOCK_TAKEN=1</value>
+     <value type="QString">PWD=/mnt/zfs/levault/dev/s/myavian/out/tux-x64-debug/result</value>
+     <value type="QString">NIX_PATH=nixpkgs=/opt/nixpkgs/stable:nixos-config=/etc/nixos/configuration.nix:/opt/nixpkgs/stable</value>
+     <value type="QString">JAVA_HOME=/nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71</value>
+     <value type="QString">KONSOLE_DBUS_WINDOW=/Windows/1</value>
+     <value type="QString">EDITOR=nano</value>
+     <value type="QString">TZDIR=/etc/zoneinfo</value>
+     <value type="QString">KDE_SESSION_UID=1042</value>
+     <value type="QString">LANG=en_US.UTF-8</value>
+     <value type="QString">shell=/nix/store/j9z585f73bl8i5r0q9pvzwanc7xh5fns-bash-4.2-p51/bin/bash</value>
+     <value type="QString">KDEDIRS=/home/ltp/.nix-profile:/nix/var/nix/profiles/default:/run/current-system/sw</value>
+     <value type="QString">STRIGI_PLUGIN_PATH=/home/ltp/.nix-profile/lib/strigi/:/nix/var/nix/profiles/default/lib/strigi/:/run/current-system/sw/lib/strigi/</value>
+     <value type="QString">NIX_OTHER_STORES=/run/nix/remote-stores/*/nix</value>
+     <value type="QString">XCURSOR_PATH=/nix/store/8g01nx068j9csnlb3qlr56anihrkyqxp-kde-workspace-4.11.12/share/icons::~/.icons:/var/empty/share/icons:/var/empty/share/pixmaps:/var/empty/X11R6/lib/X11/icons</value>
+     <value type="QString">KONSOLE_DBUS_SESSION=/Sessions/7</value>
+     <value type="QString">__ETC_PROFILE_DONE=1</value>
+     <value type="QString">OPENSSL_X509_CERT_FILE=/etc/ssl/certs/ca-bundle.crt</value>
+     <value type="QString">out=/nix/store/4ki1h1mw5mdc6zimv1fbvz06yxlrcabf-avian</value>
+     <value type="QString">CONFIG_SHELL=/nix/store/j9z585f73bl8i5r0q9pvzwanc7xh5fns-bash-4.2-p51/bin/bash</value>
+     <value type="QString">HOME=/home/ltp</value>
+     <value type="QString">XDG_SEAT=seat0</value>
+     <value type="QString">SHLVL=3</value>
+     <value type="QString">COLORFGBG=15;0</value>
+     <value type="QString">LANGUAGE=</value>
+     <value type="QString">KDE_SESSION_VERSION=4</value>
+     <value type="QString">XCURSOR_THEME=neutral_ccc</value>
+     <value type="QString">IN_NIX_SHELL=1</value>
+     <value type="QString">GTK_PATH=/home/ltp/.nix-profile/lib/gtk-2.0:/home/ltp/.nix-profile/lib/gtk-3.0:/nix/var/nix/profiles/default/lib/gtk-2.0:/nix/var/nix/profiles/default/lib/gtk-3.0:/run/current-system/sw/lib/gtk-2.0:/run/current-system/sw/lib/gtk-3.0</value>
+     <value type="QString">TMP=/tmp</value>
+     <value type="QString">LOGNAME=ltp</value>
+     <value type="QString">CUR_WIDTH=0</value>
+     <value type="QString">XDG_DATA_DIRS=/nix/store/8g01nx068j9csnlb3qlr56anihrkyqxp-kde-workspace-4.11.12/share:/home/ltp/.nix-profile/share:/nix/var/nix/profiles/default/share:/run/current-system/sw/share</value>
+     <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-d4BYDLnbjH,guid=2ccf7ce12783ccfe2bbd96e4545e4264</value>
+     <value type="QString">NIXPKGS_CONFIG=/etc/nix/nixpkgs-config.nix</value>
+     <value type="QString">LOCALE_ARCHIVE=/run/current-system/sw/lib/locale/locale-archive</value>
+     <value type="QString">buildInputs=</value>
+     <value type="QString">PKG_CONFIG_PATH=/home/ltp/.nix-profile/lib/pkgconfig:/nix/var/nix/profiles/default/lib/pkgconfig:/run/current-system/sw/lib/pkgconfig</value>
+     <value type="QString">NIX_BUILD_CORES=1</value>
+     <value type="QString">propagatedNativeBuildInputs=</value>
+     <value type="QString">INFOPATH=/home/ltp/.nix-profile/info:/home/ltp/.nix-profile/share/info:/nix/var/nix/profiles/default/info:/nix/var/nix/profiles/default/share/info:/run/current-system/sw/info:/run/current-system/sw/share/info</value>
+     <value type="QString">WINDOWPATH=7</value>
+     <value type="QString">_PATH=/nix/store/az3hqzm3p78mc54wk50rgnbrlklcpf8w-gdb-7.8/bin:/nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71/bin:/nix/store/1fbfmb1j0jrrysw3j7i7c0qrzyiwg16s-emscripten-1.25.1/bin</value>
+     <value type="QString">DISPLAY=:0</value>
+     <value type="QString">XDG_RUNTIME_DIR=/run/user/1042</value>
+     <value type="QString">PROFILEHOME=</value>
+     <value type="QString">QT_PLUGIN_PATH=/home/ltp/.nix-profile/lib/qt4/plugins:/home/ltp/.nix-profile/lib/kde4/plugins:/nix/var/nix/profiles/default/lib/qt4/plugins:/nix/var/nix/profiles/default/lib/kde4/plugins:/run/current-system/sw/lib/qt4/plugins:/run/current-system/sw/lib/kde4/plugins:/home/ltp/.kde/lib/kde4/plugins/:/nix/store/j5ks33bbjmkpvwwlj30h3pj1fbgfb5ri-system-path/lib/kde4/plugins/:/nix/store/n824jmkhmz6k8f6sdlnyldgvypbx5133-kdelibs-4.14.1/lib/kde4/plugins/</value>
+     <value type="QString">XDG_CURRENT_DESKTOP=KDE</value>
+     <value type="QString">NIX_USER_PROFILE_DIR=/nix/var/nix/profiles/per-user/ltp</value>
+     <value type="QString">_=/nix/store/mbq4nwsyjf3wpj00pxls75pikczizs16-coreutils-8.21/bin/env</value>
+    </valuelist>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Debug</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">tux-x64-debug</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4BuildConfiguration</value>
+    <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration">2</value>
+    <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/mnt/zfs/levault/dev/p/jaklintop/myavn</value>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.Arguments">v=t _mf_tmpout=/letmp/myavianout platform=tux arch=x64 mode=fast all</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.Command">make</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.WorkingDirectory">%{buildDir}</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Custom Process Step</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.ProcessStep</value>
+     </valuemap>
+     <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Build</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Build</value>
+    </valuemap>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.1">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.Arguments">v=t clean</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.Command">make</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.WorkingDirectory">%{buildDir}</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Custom Process Step</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.ProcessStep</value>
+     </valuemap>
+     <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Clean</value>
+    </valuemap>
+    <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
+    <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">true</value>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges">
+     <value type="QString">XDG_VTNR=7</value>
+     <value type="QString">MANPATH=/home/ltp/.nix-profile/man:/home/ltp/.nix-profile/share/man:/nix/var/nix/profiles/default/man:/nix/var/nix/profiles/default/share/man:/run/current-system/sw/man:/run/current-system/sw/share/man</value>
+     <value type="QString">src=/nix/store/imjr1rp7smnzj9a6g4ppdzzgmvhfxmzf-myavian</value>
+     <value type="QString">NIX_PROFILES=/run/current-system/sw /nix/var/nix/profiles/default /home/ltp/.nix-profile</value>
+     <value type="QString">XDG_SESSION_ID=3</value>
+     <value type="QString">KDE_MULTIHEAD=false</value>
+     <value type="QString">NIX_CONF_DIR=/etc/nix</value>
+     <value type="QString">DM_CONTROL=/var/run/xdmctl</value>
+     <value type="QString">SSL_CERT_FILE=/etc/ssl/certs/ca-bundle.crt</value>
+     <value type="QString">LIBVA_DRIVERS_PATH=/nix/store/fmffdih25hj7pfc5k2r857fd72id0pa1-vaapi-drivers/lib/dri</value>
+     <value type="QString">QTWEBKIT_PLUGIN_PATH=/home/ltp/.nix-profile/lib/mozilla/plugins/:/nix/var/nix/profiles/default/lib/mozilla/plugins/:/run/current-system/sw/lib/mozilla/plugins/</value>
+     <value type="QString">propagatedBuildInputs=</value>
+     <value type="QString">SHELL=/nix/store/j9z585f73bl8i5r0q9pvzwanc7xh5fns-bash-4.2-p51/bin/bash</value>
+     <value type="QString">TERM=xterm</value>
+     <value type="QString">XDM_MANAGED=method=classic</value>
+     <value type="QString">TMPDIR=/tmp</value>
+     <value type="QString">KONSOLE_DBUS_SERVICE=:1.34</value>
+     <value type="QString">GTK2_RC_FILES=/etc/gtk-2.0/gtkrc:/home/ltp/.gtkrc-2.0:/home/ltp/.kde/share/config/gtkrc-2.0</value>
+     <value type="QString">KONSOLE_PROFILE_NAME=Shell</value>
+     <value type="QString">PERL5LIB=/home/ltp/.nix-profile/lib/perl5/site_perl:/nix/var/nix/profiles/default/lib/perl5/site_perl:/run/current-system/sw/lib/perl5/site_perl</value>
+     <value type="QString">GS_LIB=/home/ltp/.fonts</value>
+     <value type="QString">GTK_RC_FILES=/etc/gtk/gtkrc:/home/ltp/.gtkrc:/home/ltp/.kde/share/config/gtkrc</value>
+     <value type="QString">WINDOWID=46137370</value>
+     <value type="QString">OLDPWD=/mnt/zfs/levault/dev/s/myavian/out/tux-x64-debug/result</value>
+     <value type="QString">MODULE_DIR=/run/current-system/kernel-modules/lib/modules</value>
+     <value type="QString">builder=/nix/store/j9z585f73bl8i5r0q9pvzwanc7xh5fns-bash-4.2-p51/bin/bash</value>
+     <value type="QString">SHELL_SESSION_ID=61c5e54ac04b4000b7a44ac4eb023d46</value>
+     <value type="QString">NIX_CFLAGS_COMPILE= -isystem /nix/store/az3hqzm3p78mc54wk50rgnbrlklcpf8w-gdb-7.8/include -isystem /nix/store/9ikh5ifbi15iq2d9kcgmg28kzzzw2jx1-zlib-1.2.8/include -isystem /nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71/include</value>
+     <value type="QString">GIT_SSL_CAINFO=/etc/ssl/certs/ca-bundle.crt</value>
+     <value type="QString">KDE_FULL_SESSION=true</value>
+     <value type="QString">LOCATE_PATH=/var/cache/locatedb</value>
+     <value type="QString">name=avian</value>
+     <value type="QString">HISTFILESIZE=9000</value>
+     <value type="QString">USER=ltp</value>
+     <value type="QString">TEMP=/tmp</value>
+     <value type="QString">XCURSOR_SIZE=0</value>
+     <value type="QString">LD_LIBRARY_PATH=/run/opengl-driver/lib:/run/opengl-driver-32/lib:/nix/store/s1n8g01x9slks39amxigr6l21gz2kp6n-freetype-2.5.3/lib</value>
+     <value type="QString">nativeBuildInputs=/nix/store/q4kb35wfj35893z8qddlil98yc1akkgc-stdenv /nix/store/az3hqzm3p78mc54wk50rgnbrlklcpf8w-gdb-7.8 /nix/store/9ikh5ifbi15iq2d9kcgmg28kzzzw2jx1-zlib-1.2.8 /nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71 /nix/store/1fbfmb1j0jrrysw3j7i7c0qrzyiwg16s-emscripten-1.25.1</value>
+     <value type="QString">SSH_AUTH_SOCK=/run/user/1042/ssh-agent</value>
+     <value type="QString">NIX_REMOTE=daemon</value>
+     <value type="QString">NIX_STORE=/nix/store</value>
+     <value type="QString">stdenv=/nix/store/q4kb35wfj35893z8qddlil98yc1akkgc-stdenv</value>
+     <value type="QString">SESSION_MANAGER=local/lews:@/tmp/.ICE-unix/2588,unix/lews:/tmp/.ICE-unix/2588</value>
+     <value type="QString">PAGER=less -R</value>
+     <value type="QString">MOZ_PLUGIN_PATH=/home/ltp/.nix-profile/lib/mozilla/plugins:/nix/var/nix/profiles/default/lib/mozilla/plugins:/run/current-system/sw/lib/mozilla/plugins</value>
+     <value type="QString">system=x86_64-linux</value>
+     <value type="QString">XDG_CONFIG_DIRS=/home/ltp/.nix-profile/etc/xdg:/nix/var/nix/profiles/default/etc/xdg:/run/current-system/sw/etc/xdg</value>
+     <value type="QString">NIX_LDFLAGS=-rpath /nix/store/4ki1h1mw5mdc6zimv1fbvz06yxlrcabf-avian/lib64 -rpath /nix/store/4ki1h1mw5mdc6zimv1fbvz06yxlrcabf-avian/lib  -L/nix/store/az3hqzm3p78mc54wk50rgnbrlklcpf8w-gdb-7.8/lib -L/nix/store/9ikh5ifbi15iq2d9kcgmg28kzzzw2jx1-zlib-1.2.8/lib -L/nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71/lib</value>
+     <value type="QString">PATH=/nix/store/az3hqzm3p78mc54wk50rgnbrlklcpf8w-gdb-7.8/bin:/nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71/bin:/nix/store/1fbfmb1j0jrrysw3j7i7c0qrzyiwg16s-emscripten-1.25.1/bin:/nix/store/12k2cnlgppwzgwar7ipzpr9i6pv27rl0-gcc-wrapper-4.8.3/bin:/nix/store/mbq4nwsyjf3wpj00pxls75pikczizs16-coreutils-8.21/bin:/nix/store/0x2125kmj8b4mf9hzqpx39m0w8jjgy1i-findutils-4.4.2/bin:/nix/store/hpnr7bmm53ra23xl8q7735f3xnkgjnmr-diffutils-3.3/bin:/nix/store/pq0kvrsqsr1kfxmyx82yv4nfj3hk7hr0-gnused-4.2.2/bin:/nix/store/wy6rp99f93j720ara5j40gzf6vwprw78-gnugrep-2.14/bin:/nix/store/iz8jfz2x387pj57xfd8b463jhjbrx2w4-gawk-4.1.0/bin:/nix/store/vjkl65bpzl39nfskl31x43x4bwipfqg3-gnutar-1.27.1/bin:/nix/store/p0z2yw63cqwv0ics21s70ys4lc75swin-gzip-1.6/bin:/nix/store/qcpcs24jzqa0v7ks06f7289mx3ghsly8-bzip2-1.0.6/bin:/nix/store/y9sif6rflwy4djfn3g66iih7cymr45sg-gnumake-3.82/bin:/nix/store/j9z585f73bl8i5r0q9pvzwanc7xh5fns-bash-4.2-p51/bin:/nix/store/0mbdmymwvs4i04wvhd4plz51is4f1qbp-patch-2.7.1/bin:/nix/store/lla8bj7kp6v306hi8rykmgxzrk9ld6cs-xz-5.0.5/bin:/nix/store/7m9qqbjira607ym0rp0frwxhir9107dl-patchelf-0.8/bin:/nix/store/j3nqrsfrcl9n8pnmd4w9jy6viq8jbzr4-paxctl-0.9/sbin:/nix/store/n2zcibvfxg6k2wpiipd8bzmc46q0vjy6-gcc-4.8.3/bin:/nix/store/ycmsiznf2484vbjwmj57jdy2ncyrj7fj-binutils-2.23.1/bin:/nix/store/i11d0d4015p0vbdnjq7lb509v9pwp049-glibc-2.19/bin:/nix/store/mbq4nwsyjf3wpj00pxls75pikczizs16-coreutils-8.21/bin:/nix/store/8g01nx068j9csnlb3qlr56anihrkyqxp-kde-workspace-4.11.12/bin:/home/ltp/bin:/var/setuid-wrappers:/mnt/zfs/levault/bin/:/home/ltp/.nix-profile/bin:/home/ltp/.nix-profile/sbin:/home/ltp/.nix-profile/lib/kde4/libexec:/nix/var/nix/profiles/default/bin:/nix/var/nix/profiles/default/sbin:/nix/var/nix/profiles/default/lib/kde4/libexec:/run/current-system/sw/bin:/run/current-system/sw/sbin:/run/current-system/sw/lib/kde4/libexec</value>
+     <value type="QString">DESKTOP_SESSION=default</value>
+     <value type="QString">TERMINFO_DIRS=/home/ltp/.nix-profile/share/terminfo:/nix/var/nix/profiles/default/share/terminfo:/run/current-system/sw/share/terminfo</value>
+     <value type="QString">shellHook=              export JAVA_HOME=/nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71</value>
+     <value type="QString">TEMPDIR=/tmp</value>
+     <value type="QString">NIX_BUILD_TOP=/tmp</value>
+     <value type="QString">_INHIBITION_LOCK_TAKEN=1</value>
+     <value type="QString">PWD=/mnt/zfs/levault/dev/s/myavian/out/tux-x64-debug/result</value>
+     <value type="QString">NIX_PATH=nixpkgs=/opt/nixpkgs/stable:nixos-config=/etc/nixos/configuration.nix:/opt/nixpkgs/stable</value>
+     <value type="QString">JAVA_HOME=/nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71</value>
+     <value type="QString">KONSOLE_DBUS_WINDOW=/Windows/1</value>
+     <value type="QString">EDITOR=nano</value>
+     <value type="QString">TZDIR=/etc/zoneinfo</value>
+     <value type="QString">KDE_SESSION_UID=1042</value>
+     <value type="QString">LANG=en_US.UTF-8</value>
+     <value type="QString">shell=/nix/store/j9z585f73bl8i5r0q9pvzwanc7xh5fns-bash-4.2-p51/bin/bash</value>
+     <value type="QString">KDEDIRS=/home/ltp/.nix-profile:/nix/var/nix/profiles/default:/run/current-system/sw</value>
+     <value type="QString">STRIGI_PLUGIN_PATH=/home/ltp/.nix-profile/lib/strigi/:/nix/var/nix/profiles/default/lib/strigi/:/run/current-system/sw/lib/strigi/</value>
+     <value type="QString">NIX_OTHER_STORES=/run/nix/remote-stores/*/nix</value>
+     <value type="QString">XCURSOR_PATH=/nix/store/8g01nx068j9csnlb3qlr56anihrkyqxp-kde-workspace-4.11.12/share/icons::~/.icons:/var/empty/share/icons:/var/empty/share/pixmaps:/var/empty/X11R6/lib/X11/icons</value>
+     <value type="QString">KONSOLE_DBUS_SESSION=/Sessions/7</value>
+     <value type="QString">__ETC_PROFILE_DONE=1</value>
+     <value type="QString">OPENSSL_X509_CERT_FILE=/etc/ssl/certs/ca-bundle.crt</value>
+     <value type="QString">out=/nix/store/4ki1h1mw5mdc6zimv1fbvz06yxlrcabf-avian</value>
+     <value type="QString">CONFIG_SHELL=/nix/store/j9z585f73bl8i5r0q9pvzwanc7xh5fns-bash-4.2-p51/bin/bash</value>
+     <value type="QString">HOME=/home/ltp</value>
+     <value type="QString">XDG_SEAT=seat0</value>
+     <value type="QString">SHLVL=3</value>
+     <value type="QString">COLORFGBG=15;0</value>
+     <value type="QString">LANGUAGE=</value>
+     <value type="QString">KDE_SESSION_VERSION=4</value>
+     <value type="QString">XCURSOR_THEME=neutral_ccc</value>
+     <value type="QString">IN_NIX_SHELL=1</value>
+     <value type="QString">GTK_PATH=/home/ltp/.nix-profile/lib/gtk-2.0:/home/ltp/.nix-profile/lib/gtk-3.0:/nix/var/nix/profiles/default/lib/gtk-2.0:/nix/var/nix/profiles/default/lib/gtk-3.0:/run/current-system/sw/lib/gtk-2.0:/run/current-system/sw/lib/gtk-3.0</value>
+     <value type="QString">TMP=/tmp</value>
+     <value type="QString">LOGNAME=ltp</value>
+     <value type="QString">CUR_WIDTH=0</value>
+     <value type="QString">XDG_DATA_DIRS=/nix/store/8g01nx068j9csnlb3qlr56anihrkyqxp-kde-workspace-4.11.12/share:/home/ltp/.nix-profile/share:/nix/var/nix/profiles/default/share:/run/current-system/sw/share</value>
+     <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-d4BYDLnbjH,guid=2ccf7ce12783ccfe2bbd96e4545e4264</value>
+     <value type="QString">NIXPKGS_CONFIG=/etc/nix/nixpkgs-config.nix</value>
+     <value type="QString">LOCALE_ARCHIVE=/run/current-system/sw/lib/locale/locale-archive</value>
+     <value type="QString">buildInputs=</value>
+     <value type="QString">PKG_CONFIG_PATH=/home/ltp/.nix-profile/lib/pkgconfig:/nix/var/nix/profiles/default/lib/pkgconfig:/run/current-system/sw/lib/pkgconfig</value>
+     <value type="QString">NIX_BUILD_CORES=1</value>
+     <value type="QString">propagatedNativeBuildInputs=</value>
+     <value type="QString">INFOPATH=/home/ltp/.nix-profile/info:/home/ltp/.nix-profile/share/info:/nix/var/nix/profiles/default/info:/nix/var/nix/profiles/default/share/info:/run/current-system/sw/info:/run/current-system/sw/share/info</value>
+     <value type="QString">WINDOWPATH=7</value>
+     <value type="QString">_PATH=/nix/store/az3hqzm3p78mc54wk50rgnbrlklcpf8w-gdb-7.8/bin:/nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71/bin:/nix/store/1fbfmb1j0jrrysw3j7i7c0qrzyiwg16s-emscripten-1.25.1/bin</value>
+     <value type="QString">DISPLAY=:0</value>
+     <value type="QString">XDG_RUNTIME_DIR=/run/user/1042</value>
+     <value type="QString">PROFILEHOME=</value>
+     <value type="QString">QT_PLUGIN_PATH=/home/ltp/.nix-profile/lib/qt4/plugins:/home/ltp/.nix-profile/lib/kde4/plugins:/nix/var/nix/profiles/default/lib/qt4/plugins:/nix/var/nix/profiles/default/lib/kde4/plugins:/run/current-system/sw/lib/qt4/plugins:/run/current-system/sw/lib/kde4/plugins:/home/ltp/.kde/lib/kde4/plugins/:/nix/store/j5ks33bbjmkpvwwlj30h3pj1fbgfb5ri-system-path/lib/kde4/plugins/:/nix/store/n824jmkhmz6k8f6sdlnyldgvypbx5133-kdelibs-4.14.1/lib/kde4/plugins/</value>
+     <value type="QString">XDG_CURRENT_DESKTOP=KDE</value>
+     <value type="QString">NIX_USER_PROFILE_DIR=/nix/var/nix/profiles/per-user/ltp</value>
+     <value type="QString">_=/nix/store/mbq4nwsyjf3wpj00pxls75pikczizs16-coreutils-8.21/bin/env</value>
+    </valuelist>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Debug</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">tux-x64-fast</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4BuildConfiguration</value>
+    <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration">2</value>
+    <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.2">
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/mnt/zfs/levault/dev/p/jaklintop/myavn</value>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">false</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.Arguments">v=t _mf_tmpout=/letmp/myavianout all</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.Command">make</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.WorkingDirectory">%{buildDir}</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Custom Process Step</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.ProcessStep</value>
+     </valuemap>
+     <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Build</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Build</value>
+    </valuemap>
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.1">
+     <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.Arguments">v=t clean</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.Command">make</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.WorkingDirectory">%{buildDir}</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Custom Process Step</value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.ProcessStep</value>
+     </valuemap>
+     <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Clean</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Clean</value>
+    </valuemap>
+    <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
+    <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">true</value>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges">
+     <value type="QString">XDG_VTNR=7</value>
+     <value type="QString">MANPATH=/home/ltp/.nix-profile/man:/home/ltp/.nix-profile/share/man:/nix/var/nix/profiles/default/man:/nix/var/nix/profiles/default/share/man:/run/current-system/sw/man:/run/current-system/sw/share/man</value>
+     <value type="QString">src=/nix/store/imjr1rp7smnzj9a6g4ppdzzgmvhfxmzf-myavian</value>
+     <value type="QString">NIX_PROFILES=/run/current-system/sw /nix/var/nix/profiles/default /home/ltp/.nix-profile</value>
+     <value type="QString">XDG_SESSION_ID=3</value>
+     <value type="QString">KDE_MULTIHEAD=false</value>
+     <value type="QString">NIX_CONF_DIR=/etc/nix</value>
+     <value type="QString">DM_CONTROL=/var/run/xdmctl</value>
+     <value type="QString">SSL_CERT_FILE=/etc/ssl/certs/ca-bundle.crt</value>
+     <value type="QString">LIBVA_DRIVERS_PATH=/nix/store/fmffdih25hj7pfc5k2r857fd72id0pa1-vaapi-drivers/lib/dri</value>
+     <value type="QString">QTWEBKIT_PLUGIN_PATH=/home/ltp/.nix-profile/lib/mozilla/plugins/:/nix/var/nix/profiles/default/lib/mozilla/plugins/:/run/current-system/sw/lib/mozilla/plugins/</value>
+     <value type="QString">propagatedBuildInputs=</value>
+     <value type="QString">SHELL=/nix/store/j9z585f73bl8i5r0q9pvzwanc7xh5fns-bash-4.2-p51/bin/bash</value>
+     <value type="QString">TERM=xterm</value>
+     <value type="QString">XDM_MANAGED=method=classic</value>
+     <value type="QString">TMPDIR=/tmp</value>
+     <value type="QString">KONSOLE_DBUS_SERVICE=:1.34</value>
+     <value type="QString">GTK2_RC_FILES=/etc/gtk-2.0/gtkrc:/home/ltp/.gtkrc-2.0:/home/ltp/.kde/share/config/gtkrc-2.0</value>
+     <value type="QString">KONSOLE_PROFILE_NAME=Shell</value>
+     <value type="QString">PERL5LIB=/home/ltp/.nix-profile/lib/perl5/site_perl:/nix/var/nix/profiles/default/lib/perl5/site_perl:/run/current-system/sw/lib/perl5/site_perl</value>
+     <value type="QString">GS_LIB=/home/ltp/.fonts</value>
+     <value type="QString">GTK_RC_FILES=/etc/gtk/gtkrc:/home/ltp/.gtkrc:/home/ltp/.kde/share/config/gtkrc</value>
+     <value type="QString">WINDOWID=46137370</value>
+     <value type="QString">OLDPWD=/mnt/zfs/levault/dev/s/myavian/out/tux-x64-debug/result</value>
+     <value type="QString">MODULE_DIR=/run/current-system/kernel-modules/lib/modules</value>
+     <value type="QString">builder=/nix/store/j9z585f73bl8i5r0q9pvzwanc7xh5fns-bash-4.2-p51/bin/bash</value>
+     <value type="QString">SHELL_SESSION_ID=61c5e54ac04b4000b7a44ac4eb023d46</value>
+     <value type="QString">NIX_CFLAGS_COMPILE= -isystem /nix/store/az3hqzm3p78mc54wk50rgnbrlklcpf8w-gdb-7.8/include -isystem /nix/store/9ikh5ifbi15iq2d9kcgmg28kzzzw2jx1-zlib-1.2.8/include -isystem /nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71/include</value>
+     <value type="QString">GIT_SSL_CAINFO=/etc/ssl/certs/ca-bundle.crt</value>
+     <value type="QString">KDE_FULL_SESSION=true</value>
+     <value type="QString">LOCATE_PATH=/var/cache/locatedb</value>
+     <value type="QString">name=avian</value>
+     <value type="QString">HISTFILESIZE=9000</value>
+     <value type="QString">USER=ltp</value>
+     <value type="QString">TEMP=/tmp</value>
+     <value type="QString">XCURSOR_SIZE=0</value>
+     <value type="QString">LD_LIBRARY_PATH=/run/opengl-driver/lib:/run/opengl-driver-32/lib:/nix/store/s1n8g01x9slks39amxigr6l21gz2kp6n-freetype-2.5.3/lib</value>
+     <value type="QString">nativeBuildInputs=/nix/store/q4kb35wfj35893z8qddlil98yc1akkgc-stdenv /nix/store/az3hqzm3p78mc54wk50rgnbrlklcpf8w-gdb-7.8 /nix/store/9ikh5ifbi15iq2d9kcgmg28kzzzw2jx1-zlib-1.2.8 /nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71 /nix/store/1fbfmb1j0jrrysw3j7i7c0qrzyiwg16s-emscripten-1.25.1</value>
+     <value type="QString">SSH_AUTH_SOCK=/run/user/1042/ssh-agent</value>
+     <value type="QString">NIX_REMOTE=daemon</value>
+     <value type="QString">NIX_STORE=/nix/store</value>
+     <value type="QString">stdenv=/nix/store/q4kb35wfj35893z8qddlil98yc1akkgc-stdenv</value>
+     <value type="QString">SESSION_MANAGER=local/lews:@/tmp/.ICE-unix/2588,unix/lews:/tmp/.ICE-unix/2588</value>
+     <value type="QString">PAGER=less -R</value>
+     <value type="QString">MOZ_PLUGIN_PATH=/home/ltp/.nix-profile/lib/mozilla/plugins:/nix/var/nix/profiles/default/lib/mozilla/plugins:/run/current-system/sw/lib/mozilla/plugins</value>
+     <value type="QString">system=x86_64-linux</value>
+     <value type="QString">XDG_CONFIG_DIRS=/home/ltp/.nix-profile/etc/xdg:/nix/var/nix/profiles/default/etc/xdg:/run/current-system/sw/etc/xdg</value>
+     <value type="QString">NIX_LDFLAGS=-rpath /nix/store/4ki1h1mw5mdc6zimv1fbvz06yxlrcabf-avian/lib64 -rpath /nix/store/4ki1h1mw5mdc6zimv1fbvz06yxlrcabf-avian/lib  -L/nix/store/az3hqzm3p78mc54wk50rgnbrlklcpf8w-gdb-7.8/lib -L/nix/store/9ikh5ifbi15iq2d9kcgmg28kzzzw2jx1-zlib-1.2.8/lib -L/nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71/lib</value>
+     <value type="QString">PATH=/nix/store/az3hqzm3p78mc54wk50rgnbrlklcpf8w-gdb-7.8/bin:/nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71/bin:/nix/store/1fbfmb1j0jrrysw3j7i7c0qrzyiwg16s-emscripten-1.25.1/bin:/nix/store/12k2cnlgppwzgwar7ipzpr9i6pv27rl0-gcc-wrapper-4.8.3/bin:/nix/store/mbq4nwsyjf3wpj00pxls75pikczizs16-coreutils-8.21/bin:/nix/store/0x2125kmj8b4mf9hzqpx39m0w8jjgy1i-findutils-4.4.2/bin:/nix/store/hpnr7bmm53ra23xl8q7735f3xnkgjnmr-diffutils-3.3/bin:/nix/store/pq0kvrsqsr1kfxmyx82yv4nfj3hk7hr0-gnused-4.2.2/bin:/nix/store/wy6rp99f93j720ara5j40gzf6vwprw78-gnugrep-2.14/bin:/nix/store/iz8jfz2x387pj57xfd8b463jhjbrx2w4-gawk-4.1.0/bin:/nix/store/vjkl65bpzl39nfskl31x43x4bwipfqg3-gnutar-1.27.1/bin:/nix/store/p0z2yw63cqwv0ics21s70ys4lc75swin-gzip-1.6/bin:/nix/store/qcpcs24jzqa0v7ks06f7289mx3ghsly8-bzip2-1.0.6/bin:/nix/store/y9sif6rflwy4djfn3g66iih7cymr45sg-gnumake-3.82/bin:/nix/store/j9z585f73bl8i5r0q9pvzwanc7xh5fns-bash-4.2-p51/bin:/nix/store/0mbdmymwvs4i04wvhd4plz51is4f1qbp-patch-2.7.1/bin:/nix/store/lla8bj7kp6v306hi8rykmgxzrk9ld6cs-xz-5.0.5/bin:/nix/store/7m9qqbjira607ym0rp0frwxhir9107dl-patchelf-0.8/bin:/nix/store/j3nqrsfrcl9n8pnmd4w9jy6viq8jbzr4-paxctl-0.9/sbin:/nix/store/n2zcibvfxg6k2wpiipd8bzmc46q0vjy6-gcc-4.8.3/bin:/nix/store/ycmsiznf2484vbjwmj57jdy2ncyrj7fj-binutils-2.23.1/bin:/nix/store/i11d0d4015p0vbdnjq7lb509v9pwp049-glibc-2.19/bin:/nix/store/mbq4nwsyjf3wpj00pxls75pikczizs16-coreutils-8.21/bin:/nix/store/8g01nx068j9csnlb3qlr56anihrkyqxp-kde-workspace-4.11.12/bin:/home/ltp/bin:/var/setuid-wrappers:/mnt/zfs/levault/bin/:/home/ltp/.nix-profile/bin:/home/ltp/.nix-profile/sbin:/home/ltp/.nix-profile/lib/kde4/libexec:/nix/var/nix/profiles/default/bin:/nix/var/nix/profiles/default/sbin:/nix/var/nix/profiles/default/lib/kde4/libexec:/run/current-system/sw/bin:/run/current-system/sw/sbin:/run/current-system/sw/lib/kde4/libexec</value>
+     <value type="QString">DESKTOP_SESSION=default</value>
+     <value type="QString">TERMINFO_DIRS=/home/ltp/.nix-profile/share/terminfo:/nix/var/nix/profiles/default/share/terminfo:/run/current-system/sw/share/terminfo</value>
+     <value type="QString">shellHook=              export JAVA_HOME=/nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71</value>
+     <value type="QString">TEMPDIR=/tmp</value>
+     <value type="QString">NIX_BUILD_TOP=/tmp</value>
+     <value type="QString">_INHIBITION_LOCK_TAKEN=1</value>
+     <value type="QString">PWD=/mnt/zfs/levault/dev/s/myavian/out/tux-x64-debug/result</value>
+     <value type="QString">NIX_PATH=nixpkgs=/opt/nixpkgs/stable:nixos-config=/etc/nixos/configuration.nix:/opt/nixpkgs/stable</value>
+     <value type="QString">JAVA_HOME=/nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71</value>
+     <value type="QString">KONSOLE_DBUS_WINDOW=/Windows/1</value>
+     <value type="QString">EDITOR=nano</value>
+     <value type="QString">TZDIR=/etc/zoneinfo</value>
+     <value type="QString">KDE_SESSION_UID=1042</value>
+     <value type="QString">LANG=en_US.UTF-8</value>
+     <value type="QString">shell=/nix/store/j9z585f73bl8i5r0q9pvzwanc7xh5fns-bash-4.2-p51/bin/bash</value>
+     <value type="QString">KDEDIRS=/home/ltp/.nix-profile:/nix/var/nix/profiles/default:/run/current-system/sw</value>
+     <value type="QString">STRIGI_PLUGIN_PATH=/home/ltp/.nix-profile/lib/strigi/:/nix/var/nix/profiles/default/lib/strigi/:/run/current-system/sw/lib/strigi/</value>
+     <value type="QString">NIX_OTHER_STORES=/run/nix/remote-stores/*/nix</value>
+     <value type="QString">XCURSOR_PATH=/nix/store/8g01nx068j9csnlb3qlr56anihrkyqxp-kde-workspace-4.11.12/share/icons::~/.icons:/var/empty/share/icons:/var/empty/share/pixmaps:/var/empty/X11R6/lib/X11/icons</value>
+     <value type="QString">KONSOLE_DBUS_SESSION=/Sessions/7</value>
+     <value type="QString">__ETC_PROFILE_DONE=1</value>
+     <value type="QString">OPENSSL_X509_CERT_FILE=/etc/ssl/certs/ca-bundle.crt</value>
+     <value type="QString">out=/nix/store/4ki1h1mw5mdc6zimv1fbvz06yxlrcabf-avian</value>
+     <value type="QString">CONFIG_SHELL=/nix/store/j9z585f73bl8i5r0q9pvzwanc7xh5fns-bash-4.2-p51/bin/bash</value>
+     <value type="QString">HOME=/home/ltp</value>
+     <value type="QString">XDG_SEAT=seat0</value>
+     <value type="QString">SHLVL=3</value>
+     <value type="QString">COLORFGBG=15;0</value>
+     <value type="QString">LANGUAGE=</value>
+     <value type="QString">KDE_SESSION_VERSION=4</value>
+     <value type="QString">XCURSOR_THEME=neutral_ccc</value>
+     <value type="QString">IN_NIX_SHELL=1</value>
+     <value type="QString">GTK_PATH=/home/ltp/.nix-profile/lib/gtk-2.0:/home/ltp/.nix-profile/lib/gtk-3.0:/nix/var/nix/profiles/default/lib/gtk-2.0:/nix/var/nix/profiles/default/lib/gtk-3.0:/run/current-system/sw/lib/gtk-2.0:/run/current-system/sw/lib/gtk-3.0</value>
+     <value type="QString">TMP=/tmp</value>
+     <value type="QString">LOGNAME=ltp</value>
+     <value type="QString">CUR_WIDTH=0</value>
+     <value type="QString">XDG_DATA_DIRS=/nix/store/8g01nx068j9csnlb3qlr56anihrkyqxp-kde-workspace-4.11.12/share:/home/ltp/.nix-profile/share:/nix/var/nix/profiles/default/share:/run/current-system/sw/share</value>
+     <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-d4BYDLnbjH,guid=2ccf7ce12783ccfe2bbd96e4545e4264</value>
+     <value type="QString">NIXPKGS_CONFIG=/etc/nix/nixpkgs-config.nix</value>
+     <value type="QString">LOCALE_ARCHIVE=/run/current-system/sw/lib/locale/locale-archive</value>
+     <value type="QString">buildInputs=</value>
+     <value type="QString">PKG_CONFIG_PATH=/home/ltp/.nix-profile/lib/pkgconfig:/nix/var/nix/profiles/default/lib/pkgconfig:/run/current-system/sw/lib/pkgconfig</value>
+     <value type="QString">NIX_BUILD_CORES=1</value>
+     <value type="QString">propagatedNativeBuildInputs=</value>
+     <value type="QString">INFOPATH=/home/ltp/.nix-profile/info:/home/ltp/.nix-profile/share/info:/nix/var/nix/profiles/default/info:/nix/var/nix/profiles/default/share/info:/run/current-system/sw/info:/run/current-system/sw/share/info</value>
+     <value type="QString">WINDOWPATH=7</value>
+     <value type="QString">_PATH=/nix/store/az3hqzm3p78mc54wk50rgnbrlklcpf8w-gdb-7.8/bin:/nix/store/g85fla31jhmm0ckfwgsclcvrh2ack9zf-oraclejdk-7u71/bin:/nix/store/1fbfmb1j0jrrysw3j7i7c0qrzyiwg16s-emscripten-1.25.1/bin</value>
+     <value type="QString">DISPLAY=:0</value>
+     <value type="QString">XDG_RUNTIME_DIR=/run/user/1042</value>
+     <value type="QString">PROFILEHOME=</value>
+     <value type="QString">QT_PLUGIN_PATH=/home/ltp/.nix-profile/lib/qt4/plugins:/home/ltp/.nix-profile/lib/kde4/plugins:/nix/var/nix/profiles/default/lib/qt4/plugins:/nix/var/nix/profiles/default/lib/kde4/plugins:/run/current-system/sw/lib/qt4/plugins:/run/current-system/sw/lib/kde4/plugins:/home/ltp/.kde/lib/kde4/plugins/:/nix/store/j5ks33bbjmkpvwwlj30h3pj1fbgfb5ri-system-path/lib/kde4/plugins/:/nix/store/n824jmkhmz6k8f6sdlnyldgvypbx5133-kdelibs-4.14.1/lib/kde4/plugins/</value>
+     <value type="QString">XDG_CURRENT_DESKTOP=KDE</value>
+     <value type="QString">NIX_USER_PROFILE_DIR=/nix/var/nix/profiles/per-user/ltp</value>
+     <value type="QString">_=/nix/store/mbq4nwsyjf3wpj00pxls75pikczizs16-coreutils-8.21/bin/env</value>
+    </valuelist>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Debug</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">jbox2d-tux-x64-debug</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4BuildConfiguration</value>
+    <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration">2</value>
+    <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
+   </valuemap>
+   <value type="int" key="ProjectExplorer.Target.BuildConfigurationCount">3</value>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.DeployConfiguration.0">
+    <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
+     <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">0</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Deploy</value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Deploy</value>
+    </valuemap>
+    <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">1</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Deploy locally</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.DefaultDeployConfiguration</value>
+   </valuemap>
+   <value type="int" key="ProjectExplorer.Target.DeployConfigurationCount">1</value>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.PluginSettings"/>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.0">
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.AddedSuppressionFiles"/>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectBusEvents">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectSystime">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableBranchSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableCacheSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableEventToolTips">true</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.MinimumCostRatio">0.01</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.VisualisationMinimumCostRatio">10</value>
+    <value type="bool" key="Analyzer.Valgrind.FilterExternalIssues">true</value>
+    <value type="int" key="Analyzer.Valgrind.LeakCheckOnFinish">1</value>
+    <value type="int" key="Analyzer.Valgrind.NumCallers">25</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.RemovedSuppressionFiles"/>
+    <value type="int" key="Analyzer.Valgrind.SelfModifyingCodeDetection">1</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.ShowReachable">false</value>
+    <value type="bool" key="Analyzer.Valgrind.TrackOrigins">true</value>
+    <value type="QString" key="Analyzer.Valgrind.ValgrindExecutable">valgrind</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.VisibleErrorKinds">
+     <value type="int">0</value>
+     <value type="int">1</value>
+     <value type="int">2</value>
+     <value type="int">3</value>
+     <value type="int">4</value>
+     <value type="int">5</value>
+     <value type="int">6</value>
+     <value type="int">7</value>
+     <value type="int">8</value>
+     <value type="int">9</value>
+     <value type="int">10</value>
+     <value type="int">11</value>
+     <value type="int">12</value>
+     <value type="int">13</value>
+     <value type="int">14</value>
+    </valuelist>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Arguments"></value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Executable">out/tux-x64-debug/result/myt_stupid</value>
+    <value type="bool" key="ProjectExplorer.CustomExecutableRunConfiguration.UseTerminal">false</value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.WorkingDirectory">%{buildDir}</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Run out/tux-x64-debug/result/myt_stupid</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
+    <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseMultiProcess">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.1">
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.AddedSuppressionFiles"/>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectBusEvents">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectSystime">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableBranchSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableCacheSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableEventToolTips">true</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.MinimumCostRatio">0.01</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.VisualisationMinimumCostRatio">10</value>
+    <value type="bool" key="Analyzer.Valgrind.FilterExternalIssues">true</value>
+    <value type="int" key="Analyzer.Valgrind.LeakCheckOnFinish">1</value>
+    <value type="int" key="Analyzer.Valgrind.NumCallers">25</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.RemovedSuppressionFiles"/>
+    <value type="int" key="Analyzer.Valgrind.SelfModifyingCodeDetection">1</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.ShowReachable">false</value>
+    <value type="bool" key="Analyzer.Valgrind.TrackOrigins">true</value>
+    <value type="QString" key="Analyzer.Valgrind.ValgrindExecutable">valgrind</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.VisibleErrorKinds">
+     <value type="int">0</value>
+     <value type="int">1</value>
+     <value type="int">2</value>
+     <value type="int">3</value>
+     <value type="int">4</value>
+     <value type="int">5</value>
+     <value type="int">6</value>
+     <value type="int">7</value>
+     <value type="int">8</value>
+     <value type="int">9</value>
+     <value type="int">10</value>
+     <value type="int">11</value>
+     <value type="int">12</value>
+     <value type="int">13</value>
+     <value type="int">14</value>
+    </valuelist>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Arguments"></value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Executable">out/tux-x64-fast/result/myt_stupid</value>
+    <value type="bool" key="ProjectExplorer.CustomExecutableRunConfiguration.UseTerminal">false</value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.WorkingDirectory">%{buildDir}</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Run out/tux-x64-fast/result/myt_stupid</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
+    <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseMultiProcess">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.10">
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.AddedSuppressionFiles"/>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectBusEvents">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectSystime">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableBranchSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableCacheSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableEventToolTips">true</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.MinimumCostRatio">0.01</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.VisualisationMinimumCostRatio">10</value>
+    <value type="bool" key="Analyzer.Valgrind.FilterExternalIssues">true</value>
+    <value type="int" key="Analyzer.Valgrind.LeakCheckOnFinish">1</value>
+    <value type="int" key="Analyzer.Valgrind.NumCallers">25</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.RemovedSuppressionFiles"/>
+    <value type="int" key="Analyzer.Valgrind.SelfModifyingCodeDetection">1</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.ShowReachable">false</value>
+    <value type="bool" key="Analyzer.Valgrind.TrackOrigins">true</value>
+    <value type="QString" key="Analyzer.Valgrind.ValgrindExecutable">valgrind</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.VisibleErrorKinds">
+     <value type="int">0</value>
+     <value type="int">1</value>
+     <value type="int">2</value>
+     <value type="int">3</value>
+     <value type="int">4</value>
+     <value type="int">5</value>
+     <value type="int">6</value>
+     <value type="int">7</value>
+     <value type="int">8</value>
+     <value type="int">9</value>
+     <value type="int">10</value>
+     <value type="int">11</value>
+     <value type="int">12</value>
+     <value type="int">13</value>
+     <value type="int">14</value>
+    </valuelist>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes">
+     <value type="QString">GLASS_PLATFORM=sdl</value>
+    </valuelist>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Arguments"></value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Executable">out/tux-x64-debug/result/myfxt_stupid</value>
+    <value type="bool" key="ProjectExplorer.CustomExecutableRunConfiguration.UseTerminal">false</value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.WorkingDirectory">/mnt/zfs/levault/dev/p/jaklintop/myfx</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Run out/tux-x64-debug/result/myfxt_stupid</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">out/tux-x64-debug/result/myfxt_stupid-sdl</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
+    <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseMultiProcess">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.2">
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.AddedSuppressionFiles"/>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectBusEvents">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectSystime">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableBranchSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableCacheSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableEventToolTips">true</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.MinimumCostRatio">0.01</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.VisualisationMinimumCostRatio">10</value>
+    <value type="bool" key="Analyzer.Valgrind.FilterExternalIssues">true</value>
+    <value type="int" key="Analyzer.Valgrind.LeakCheckOnFinish">1</value>
+    <value type="int" key="Analyzer.Valgrind.NumCallers">25</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.RemovedSuppressionFiles"/>
+    <value type="int" key="Analyzer.Valgrind.SelfModifyingCodeDetection">1</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.ShowReachable">false</value>
+    <value type="bool" key="Analyzer.Valgrind.TrackOrigins">true</value>
+    <value type="QString" key="Analyzer.Valgrind.ValgrindExecutable">valgrind</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.VisibleErrorKinds">
+     <value type="int">0</value>
+     <value type="int">1</value>
+     <value type="int">2</value>
+     <value type="int">3</value>
+     <value type="int">4</value>
+     <value type="int">5</value>
+     <value type="int">6</value>
+     <value type="int">7</value>
+     <value type="int">8</value>
+     <value type="int">9</value>
+     <value type="int">10</value>
+     <value type="int">11</value>
+     <value type="int">12</value>
+     <value type="int">13</value>
+     <value type="int">14</value>
+    </valuelist>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Arguments"></value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Executable">out/tux-x64-debug/result/jbox2d/jb2d</value>
+    <value type="bool" key="ProjectExplorer.CustomExecutableRunConfiguration.UseTerminal">false</value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.WorkingDirectory">%{buildDir}</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Run out/tux-x64-debug/result/jbox2d/jb2d</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Run out/tux-x64-debug/result/jbox2d</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
+    <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseMultiProcess">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.3">
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.AddedSuppressionFiles"/>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectBusEvents">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectSystime">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableBranchSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableCacheSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableEventToolTips">true</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.MinimumCostRatio">0.01</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.VisualisationMinimumCostRatio">10</value>
+    <value type="bool" key="Analyzer.Valgrind.FilterExternalIssues">true</value>
+    <value type="int" key="Analyzer.Valgrind.LeakCheckOnFinish">1</value>
+    <value type="int" key="Analyzer.Valgrind.NumCallers">25</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.RemovedSuppressionFiles"/>
+    <value type="int" key="Analyzer.Valgrind.SelfModifyingCodeDetection">1</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.ShowReachable">false</value>
+    <value type="bool" key="Analyzer.Valgrind.TrackOrigins">true</value>
+    <value type="QString" key="Analyzer.Valgrind.ValgrindExecutable">valgrind</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.VisibleErrorKinds">
+     <value type="int">0</value>
+     <value type="int">1</value>
+     <value type="int">2</value>
+     <value type="int">3</value>
+     <value type="int">4</value>
+     <value type="int">5</value>
+     <value type="int">6</value>
+     <value type="int">7</value>
+     <value type="int">8</value>
+     <value type="int">9</value>
+     <value type="int">10</value>
+     <value type="int">11</value>
+     <value type="int">12</value>
+     <value type="int">13</value>
+     <value type="int">14</value>
+    </valuelist>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Arguments"></value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Executable">out/tux-x64-debug/result/myt_jni</value>
+    <value type="bool" key="ProjectExplorer.CustomExecutableRunConfiguration.UseTerminal">false</value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.WorkingDirectory">%{buildDir}</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Run out/tux-x64-debug/result/myt_jni</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Run out/tux-x64-debug/result/myt_jni</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
+    <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseMultiProcess">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.4">
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.AddedSuppressionFiles"/>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectBusEvents">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectSystime">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableBranchSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableCacheSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableEventToolTips">true</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.MinimumCostRatio">0.01</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.VisualisationMinimumCostRatio">10</value>
+    <value type="bool" key="Analyzer.Valgrind.FilterExternalIssues">true</value>
+    <value type="int" key="Analyzer.Valgrind.LeakCheckOnFinish">1</value>
+    <value type="int" key="Analyzer.Valgrind.NumCallers">25</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.RemovedSuppressionFiles"/>
+    <value type="int" key="Analyzer.Valgrind.SelfModifyingCodeDetection">1</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.ShowReachable">false</value>
+    <value type="bool" key="Analyzer.Valgrind.TrackOrigins">true</value>
+    <value type="QString" key="Analyzer.Valgrind.ValgrindExecutable">valgrind</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.VisibleErrorKinds">
+     <value type="int">0</value>
+     <value type="int">1</value>
+     <value type="int">2</value>
+     <value type="int">3</value>
+     <value type="int">4</value>
+     <value type="int">5</value>
+     <value type="int">6</value>
+     <value type="int">7</value>
+     <value type="int">8</value>
+     <value type="int">9</value>
+     <value type="int">10</value>
+     <value type="int">11</value>
+     <value type="int">12</value>
+     <value type="int">13</value>
+     <value type="int">14</value>
+    </valuelist>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Arguments"></value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Executable">%{buildDir}/out/tux-x64-debug/result/jake2/jb2d</value>
+    <value type="bool" key="ProjectExplorer.CustomExecutableRunConfiguration.UseTerminal">false</value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.WorkingDirectory">/letmp</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Run %{buildDir}/out/tux-x64-debug/result/jake2/jb2d</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Run out/tux-x64-debug/result/jake2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
+    <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseMultiProcess">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.5">
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.AddedSuppressionFiles"/>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectBusEvents">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectSystime">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableBranchSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableCacheSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableEventToolTips">true</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.MinimumCostRatio">0.01</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.VisualisationMinimumCostRatio">10</value>
+    <value type="bool" key="Analyzer.Valgrind.FilterExternalIssues">true</value>
+    <value type="int" key="Analyzer.Valgrind.LeakCheckOnFinish">1</value>
+    <value type="int" key="Analyzer.Valgrind.NumCallers">25</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.RemovedSuppressionFiles"/>
+    <value type="int" key="Analyzer.Valgrind.SelfModifyingCodeDetection">1</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.ShowReachable">false</value>
+    <value type="bool" key="Analyzer.Valgrind.TrackOrigins">true</value>
+    <value type="QString" key="Analyzer.Valgrind.ValgrindExecutable">valgrind</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.VisibleErrorKinds">
+     <value type="int">0</value>
+     <value type="int">1</value>
+     <value type="int">2</value>
+     <value type="int">3</value>
+     <value type="int">4</value>
+     <value type="int">5</value>
+     <value type="int">6</value>
+     <value type="int">7</value>
+     <value type="int">8</value>
+     <value type="int">9</value>
+     <value type="int">10</value>
+     <value type="int">11</value>
+     <value type="int">12</value>
+     <value type="int">13</value>
+     <value type="int">14</value>
+    </valuelist>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">myavian</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/mnt/zfs/levault/dev/p/jaklintop/myavn/.qtc/myavian.pro</value>
+    <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
+    <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">myavian.pro</value>
+    <value type="bool" key="Qt4ProjectManager.Qt4RunConfiguration.UseDyldImageSuffix">false</value>
+    <value type="bool" key="Qt4ProjectManager.Qt4RunConfiguration.UseTerminal">true</value>
+    <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory"></value>
+    <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseMultiProcess">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.6">
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.AddedSuppressionFiles"/>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectBusEvents">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectSystime">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableBranchSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableCacheSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableEventToolTips">true</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.MinimumCostRatio">0.01</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.VisualisationMinimumCostRatio">10</value>
+    <value type="bool" key="Analyzer.Valgrind.FilterExternalIssues">true</value>
+    <value type="int" key="Analyzer.Valgrind.LeakCheckOnFinish">1</value>
+    <value type="int" key="Analyzer.Valgrind.NumCallers">25</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.RemovedSuppressionFiles"/>
+    <value type="int" key="Analyzer.Valgrind.SelfModifyingCodeDetection">1</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.ShowReachable">false</value>
+    <value type="bool" key="Analyzer.Valgrind.TrackOrigins">true</value>
+    <value type="QString" key="Analyzer.Valgrind.ValgrindExecutable">valgrind</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.VisibleErrorKinds">
+     <value type="int">0</value>
+     <value type="int">1</value>
+     <value type="int">2</value>
+     <value type="int">3</value>
+     <value type="int">4</value>
+     <value type="int">5</value>
+     <value type="int">6</value>
+     <value type="int">7</value>
+     <value type="int">8</value>
+     <value type="int">9</value>
+     <value type="int">10</value>
+     <value type="int">11</value>
+     <value type="int">12</value>
+     <value type="int">13</value>
+     <value type="int">14</value>
+    </valuelist>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Arguments"></value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Executable">out/tux-x64-debug/result/myfxt_stupid</value>
+    <value type="bool" key="ProjectExplorer.CustomExecutableRunConfiguration.UseTerminal">false</value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.WorkingDirectory">/mnt/zfs/levault/dev/p/jaklintop/myfx</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Run out/tux-x64-debug/result/myfxt_stupid</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">out/tux-x64-debug/result/myfxt_stupid</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
+    <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseMultiProcess">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.7">
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.AddedSuppressionFiles"/>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectBusEvents">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectSystime">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableBranchSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableCacheSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableEventToolTips">true</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.MinimumCostRatio">0.01</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.VisualisationMinimumCostRatio">10</value>
+    <value type="bool" key="Analyzer.Valgrind.FilterExternalIssues">true</value>
+    <value type="int" key="Analyzer.Valgrind.LeakCheckOnFinish">1</value>
+    <value type="int" key="Analyzer.Valgrind.NumCallers">25</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.RemovedSuppressionFiles"/>
+    <value type="int" key="Analyzer.Valgrind.SelfModifyingCodeDetection">1</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.ShowReachable">false</value>
+    <value type="bool" key="Analyzer.Valgrind.TrackOrigins">true</value>
+    <value type="QString" key="Analyzer.Valgrind.ValgrindExecutable">valgrind</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.VisibleErrorKinds">
+     <value type="int">0</value>
+     <value type="int">1</value>
+     <value type="int">2</value>
+     <value type="int">3</value>
+     <value type="int">4</value>
+     <value type="int">5</value>
+     <value type="int">6</value>
+     <value type="int">7</value>
+     <value type="int">8</value>
+     <value type="int">9</value>
+     <value type="int">10</value>
+     <value type="int">11</value>
+     <value type="int">12</value>
+     <value type="int">13</value>
+     <value type="int">14</value>
+    </valuelist>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Arguments"></value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Executable">/mnt/zfs/levault/dev/p/jaklintop/myfx/egl.test</value>
+    <value type="bool" key="ProjectExplorer.CustomExecutableRunConfiguration.UseTerminal">false</value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.WorkingDirectory">/mnt/zfs/levault/dev/p/jaklintop/myfx</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Run /mnt/zfs/levault/dev/p/jaklintop/myfx/egl.test</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">egl.test</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
+    <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseMultiProcess">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.8">
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.AddedSuppressionFiles"/>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectBusEvents">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectSystime">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableBranchSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableCacheSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableEventToolTips">true</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.MinimumCostRatio">0.01</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.VisualisationMinimumCostRatio">10</value>
+    <value type="bool" key="Analyzer.Valgrind.FilterExternalIssues">true</value>
+    <value type="int" key="Analyzer.Valgrind.LeakCheckOnFinish">1</value>
+    <value type="int" key="Analyzer.Valgrind.NumCallers">25</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.RemovedSuppressionFiles"/>
+    <value type="int" key="Analyzer.Valgrind.SelfModifyingCodeDetection">1</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.ShowReachable">false</value>
+    <value type="bool" key="Analyzer.Valgrind.TrackOrigins">true</value>
+    <value type="QString" key="Analyzer.Valgrind.ValgrindExecutable">valgrind</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.VisibleErrorKinds">
+     <value type="int">0</value>
+     <value type="int">1</value>
+     <value type="int">2</value>
+     <value type="int">3</value>
+     <value type="int">4</value>
+     <value type="int">5</value>
+     <value type="int">6</value>
+     <value type="int">7</value>
+     <value type="int">8</value>
+     <value type="int">9</value>
+     <value type="int">10</value>
+     <value type="int">11</value>
+     <value type="int">12</value>
+     <value type="int">13</value>
+     <value type="int">14</value>
+    </valuelist>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Arguments"></value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Executable">/mnt/zfs/levault/dev/p/jaklintop/myfx/egl.info</value>
+    <value type="bool" key="ProjectExplorer.CustomExecutableRunConfiguration.UseTerminal">false</value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.WorkingDirectory">/mnt/zfs/levault/dev/p/jaklintop/myfx</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Run /mnt/zfs/levault/dev/p/jaklintop/myfx/egl.info</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">egl.info</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
+    <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseMultiProcess">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.9">
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.AddedSuppressionFiles"/>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectBusEvents">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.CollectSystime">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableBranchSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableCacheSim">false</value>
+    <value type="bool" key="Analyzer.Valgrind.Callgrind.EnableEventToolTips">true</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.MinimumCostRatio">0.01</value>
+    <value type="double" key="Analyzer.Valgrind.Callgrind.VisualisationMinimumCostRatio">10</value>
+    <value type="bool" key="Analyzer.Valgrind.FilterExternalIssues">true</value>
+    <value type="int" key="Analyzer.Valgrind.LeakCheckOnFinish">1</value>
+    <value type="int" key="Analyzer.Valgrind.NumCallers">25</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.RemovedSuppressionFiles"/>
+    <value type="int" key="Analyzer.Valgrind.SelfModifyingCodeDetection">1</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.ShowReachable">false</value>
+    <value type="bool" key="Analyzer.Valgrind.TrackOrigins">true</value>
+    <value type="QString" key="Analyzer.Valgrind.ValgrindExecutable">valgrind</value>
+    <valuelist type="QVariantList" key="Analyzer.Valgrind.VisibleErrorKinds">
+     <value type="int">0</value>
+     <value type="int">1</value>
+     <value type="int">2</value>
+     <value type="int">3</value>
+     <value type="int">4</value>
+     <value type="int">5</value>
+     <value type="int">6</value>
+     <value type="int">7</value>
+     <value type="int">8</value>
+     <value type="int">9</value>
+     <value type="int">10</value>
+     <value type="int">11</value>
+     <value type="int">12</value>
+     <value type="int">13</value>
+     <value type="int">14</value>
+    </valuelist>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Arguments"></value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Executable">/mnt/zfs/levault/dev/p/jaklintop/myfx/egl.gears</value>
+    <value type="bool" key="ProjectExplorer.CustomExecutableRunConfiguration.UseTerminal">false</value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.WorkingDirectory">/mnt/zfs/levault/dev/p/jaklintop/myfx</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Run /mnt/zfs/levault/dev/p/jaklintop/myfx/egl.gears</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">egl.gears</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
+    <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseMultiProcess">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+   </valuemap>
+   <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">11</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>ProjectExplorer.Project.TargetCount</variable>
+  <value type="int">1</value>
+ </data>
+ <data>
+  <variable>ProjectExplorer.Project.Updater.FileVersion</variable>
+  <value type="int">16</value>
+ </data>
+ <data>
+  <variable>Version</variable>
+  <value type="int">16</value>
+ </data>
+</qtcreator>

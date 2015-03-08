@@ -11,6 +11,10 @@
 package java.nio;
 
 public abstract class Buffer {
+	//mymod: added
+	//+stolen ojdk
+	private int mark = -1;
+	//-stolen ojdk
   protected int capacity;
   protected int position;
   protected int limit;
@@ -32,12 +36,31 @@ public abstract class Buffer {
   }
 
   public final Buffer limit(int newLimit) {
+		//mymod: added
+		//+stolen ojdk
+		if ((newLimit > capacity) || (newLimit < 0))
+			throw new IllegalArgumentException();
+		//-stolen ojdk
     limit = newLimit;
+		//mymod: added
+		//+stolen ojdk
+		if (position > limit) position = limit;
+		if (mark > limit) mark = -1;
+		//-stolen ojdk
     return this;
   }
 
   public final Buffer position(int newPosition) {
+		//mymod: added
+		//+stolen ojdk
+		if ((newPosition > limit) || (newPosition < 0))
+			throw new IllegalArgumentException();
+		//-stolen ojdk
     position = newPosition;
+		//mymod: added
+		//+stolen ojdk
+		if (mark > position) mark = -1;
+		//-stolen ojdk
     return this;
   }
 
@@ -48,17 +71,45 @@ public abstract class Buffer {
   public final Buffer clear() {
     position = 0;
     limit = capacity;
+		//mymod: added
+		//+stolen ojdk
+		mark = -1;
+		//-stolen ojdk
     return this;
   }
 
   public final Buffer flip() {
     limit = position;
     position = 0;
+		//mymod: added
+		//+stolen ojdk
+		mark = -1;
+		//-stolen ojdk
     return this;
   }
 
   public final Buffer rewind() {
     position = 0;
+		//mymod: added
+		//+stolen ojdk
+		mark = -1;
+		//-stolen ojdk
     return this;
   }
+
+	//mymod: added
+	//+stolen ojdk
+	public final Buffer mark() {
+		mark = position;
+		return this;
+	}
+
+	public final Buffer reset() {
+		int m = mark;
+		if (m < 0)
+			throw new InvalidMarkException();
+		position = m;
+		return this;
+	}
+	//-stolen ojdk
 }

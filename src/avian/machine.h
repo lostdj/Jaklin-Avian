@@ -22,6 +22,8 @@
 #include "avian/constants.h"
 #include "avian/arch.h"
 
+#include <cph/java.h>
+
 using namespace avian::util;
 
 #ifdef PLATFORM_WINDOWS
@@ -129,7 +131,12 @@ namespace vm {
 
 const bool Verbose = false;
 const bool DebugRun = false;
-const bool DebugStack = false;
+//mymod
+#ifdef _myavn_log_eedebugstack
+  const bool DebugStack = true;
+#else
+  const bool DebugStack = false;
+#endif
 const bool DebugMonitors = false;
 const bool DebugReferences = false;
 
@@ -1008,12 +1015,28 @@ class Machine {
           unsigned argumentCount,
           unsigned stackSizeInBytes);
 
+  //mymod
+  Machine(System* system,
+          Heap* heap,
+          Finder* bootFinder,
+          Finder* appFinder,
+          Processor* processor,
+          Classpath* classpath,
+          const char** properties,
+          unsigned propertyCount,
+          const char** arguments,
+          unsigned argumentCount,
+          unsigned stackSizeInBytes,
+          cph::jni::JavaVMInitArgs* jvmargs);
+
   ~Machine()
   {
     dispose();
   }
 
   void dispose();
+  //mymod
+  void addLib(System::Library* lib);
 
   JavaVMVTable* vtable;
   System* system;
@@ -1440,8 +1463,8 @@ Classpath* makeClasspath(System* system,
                          const char* javaHome,
                          const char* embedPrefix);
 
-typedef uint64_t(JNICALL* FastNativeFunction)(Thread*, GcMethod*, uintptr_t*);
-typedef void(JNICALL* FastVoidNativeFunction)(Thread*, GcMethod*, uintptr_t*);
+typedef uint64_t(JNICALL* FastNativeFunction)(Thread*, object, uintptr_t*);
+typedef void(JNICALL* FastVoidNativeFunction)(Thread*, object, uintptr_t*);
 
 inline GcClass* objectClass(Thread*, object o)
 {
@@ -1767,12 +1790,39 @@ inline void Thread::Runnable::setInterrupted(bool v)
   t->javaThread->interrupted() = v;
 }
 
+//mymod: added this, originally in asm
+#ifdef _myavn_unwindex
+inline uint64_t vmRun(Thread *t,
+                      uint64_t (*function)(Thread*, uintptr_t*),
+                      uintptr_t* arguments,
+                      void*/*checkpoint*/)
+{
+  return (*function)(t, arguments);
+}
+#endif
+
 inline uint64_t runRaw(Thread* t,
                        uint64_t (*function)(Thread*, uintptr_t*),
                        uintptr_t* arguments)
 {
   Thread::RunCheckpoint checkpoint(t);
-  return vmRun(function, arguments, &checkpoint);
+  //mymod
+  uint64_t r = 0;
+  #ifndef _myavn_unwindex
+    r = vmRun(function, arguments, &checkpoint);
+  #else
+    try
+    {
+      r = vmRun(t, function, arguments, &checkpoint);
+    }
+    catch(cph::uw ex)
+    {
+      if(ex != _myavn_unwindex)
+        throw;
+    }
+  #endif
+  ;
+  return r;
 }
 
 inline uint64_t run(Thread* t,
@@ -2575,11 +2625,17 @@ inline void NO_RETURN throw_(Thread* t, GcThrowable* e)
     }
   }
 
+  //mymod
+  // printf("-------- teh exception --------\n");
+
   // printTrace(t, e);
 
-  popResources(t);
-
-  t->checkpoint->unwind();
+  #ifndef _myavn_unwindex
+    popResources(t);
+    t->checkpoint->unwind();
+  #else
+    throw _myavn_unwindex;
+  #endif
 
   abort(t);
 }
@@ -2592,7 +2648,7 @@ inline void NO_RETURN throwNew(Thread* t,
 {
   throw_(t, makeThrowable(t, type, message, trace, cause));
 }
-
+//
 inline void NO_RETURN
     throwNew(Thread* t, Gc::Type type, const char* format, ...)
 {
@@ -2755,7 +2811,12 @@ inline bool atomicCompareAndSwapObject(Thread* t,
 // The following two methods (monitorAtomicAppendAcquire and
 // monitorAtomicPollAcquire) use the Michael and Scott Non-Blocking
 // Queue Algorithm: http://www.cs.rochester.edu/u/michael/PODC96.html
-
+//mymod
+#if _cph_os_ems
+inline void monitorAtomicAppendAcquire(Thread*,
+                                       GcMonitor*,
+                                       GcMonitorNode*) {}
+#else
 inline void monitorAtomicAppendAcquire(Thread* t,
                                        GcMonitor* monitor,
                                        GcMonitorNode* node)
@@ -2786,7 +2847,17 @@ inline void monitorAtomicAppendAcquire(Thread* t,
     }
   }
 }
+#endif
 
+//mymod
+#if _cph_os_ems
+inline Thread* monitorAtomicPollAcquire(Thread* t,
+                                        GcMonitor*,
+                                        bool)
+{
+  return t;
+}
+#else
 inline Thread* monitorAtomicPollAcquire(Thread* t,
                                         GcMonitor* monitor,
                                         bool remove)
@@ -2822,7 +2893,12 @@ inline Thread* monitorAtomicPollAcquire(Thread* t,
     }
   }
 }
+#endif
 
+//mymod
+#if _cph_os_ems
+inline bool monitorTryAcquire(Thread*, GcMonitor*) {return true;}
+#else
 inline bool monitorTryAcquire(Thread* t, GcMonitor* monitor)
 {
   if (monitor->owner() == t
@@ -2837,7 +2913,16 @@ inline bool monitorTryAcquire(Thread* t, GcMonitor* monitor)
     return false;
   }
 }
+#endif
 
+//mymod
+#if _cph_os_ems
+inline void monitorAcquire(Thread*,
+                           GcMonitor*) {}
+inline void monitorAcquire(Thread*,
+                           GcMonitor*,
+                           GcMonitorNode*) {}
+#else
 inline void monitorAcquire(Thread* t,
                            GcMonitor* monitor,
                            GcMonitorNode* node = 0)
@@ -2871,7 +2956,12 @@ inline void monitorAcquire(Thread* t,
 
   assertT(t, monitor->owner() == t);
 }
+#endif
 
+//mymod
+#if _cph_os_ems
+inline void monitorRelease(Thread*, GcMonitor*) {}
+#else
 inline void monitorRelease(Thread* t, GcMonitor* monitor)
 {
   expect(t, monitor->owner() == t);
@@ -2892,7 +2982,12 @@ inline void monitorRelease(Thread* t, GcMonitor* monitor)
     }
   }
 }
+#endif
 
+//mymod
+#if _cph_os_ems
+inline void monitorAppendWait(Thread*, GcMonitor*) {}
+#else
 inline void monitorAppendWait(Thread* t, GcMonitor* monitor)
 {
   assertT(t, monitor->owner() == t);
@@ -2910,7 +3005,12 @@ inline void monitorAppendWait(Thread* t, GcMonitor* monitor)
 
   monitor->waitTail() = t;
 }
+#endif
 
+//mymod
+#if _cph_os_ems
+inline void monitorRemoveWait(Thread*, GcMonitor*) {}
+#else
 inline void monitorRemoveWait(Thread* t, GcMonitor* monitor)
 {
   assertT(t, monitor->owner() == t);
@@ -2941,7 +3041,12 @@ inline void monitorRemoveWait(Thread* t, GcMonitor* monitor)
 
   abort(t);
 }
+#endif
 
+//mymod
+#if _cph_os_ems
+inline bool monitorFindWait(Thread*, GcMonitor*) {return true;}
+#else
 inline bool monitorFindWait(Thread* t, GcMonitor* monitor)
 {
   assertT(t, monitor->owner() == t);
@@ -2955,7 +3060,12 @@ inline bool monitorFindWait(Thread* t, GcMonitor* monitor)
 
   return false;
 }
+#endif
 
+//mymod
+#if _cph_os_ems
+inline bool monitorWait(Thread*, GcMonitor*, int64_t) {return true;}
+#else
 inline bool monitorWait(Thread* t, GcMonitor* monitor, int64_t time)
 {
   expect(t, monitor->owner() == t);
@@ -2999,7 +3109,12 @@ inline bool monitorWait(Thread* t, GcMonitor* monitor, int64_t time)
 
   return interrupted;
 }
+#endif
 
+//mymod
+#if _cph_os_ems
+inline Thread* monitorPollWait(Thread* t, GcMonitor*) {return t;}
+#else
 inline Thread* monitorPollWait(Thread* t UNUSED, GcMonitor* monitor)
 {
   assertT(t, monitor->owner() == t);
@@ -3019,7 +3134,12 @@ inline Thread* monitorPollWait(Thread* t UNUSED, GcMonitor* monitor)
 
   return next;
 }
+#endif
 
+//mymod
+#if _cph_os_ems
+inline bool monitorNotify(Thread*, GcMonitor*) {return true;}
+#else
 inline bool monitorNotify(Thread* t, GcMonitor* monitor)
 {
   expect(t, monitor->owner() == t);
@@ -3036,7 +3156,12 @@ inline bool monitorNotify(Thread* t, GcMonitor* monitor)
     return false;
   }
 }
+#endif
 
+//mymod
+#if _cph_os_ems
+inline void monitorNotifyAll(Thread*, GcMonitor*) {}
+#else
 inline void monitorNotifyAll(Thread* t, GcMonitor* monitor)
 {
   PROTECT(t, monitor);
@@ -3044,6 +3169,7 @@ inline void monitorNotifyAll(Thread* t, GcMonitor* monitor)
   while (monitorNotify(t, monitor)) {
   }
 }
+#endif
 
 class ObjectMonitorResource {
  public:
@@ -3152,11 +3278,14 @@ inline void notify(Thread* t, object o)
     fprintf(stderr, "thread %p notifies on %p for %x\n", t, m, hash);
   }
 
-  if (m and m->owner() == t) {
-    monitorNotify(t, m);
-  } else {
-    throwNew(t, GcIllegalMonitorStateException::Type);
-  }
+  //mymod
+  #if !_cph_os_ems
+    if (m and m->owner() == t) {
+      monitorNotify(t, m);
+    } else {
+      throwNew(t, GcIllegalMonitorStateException::Type);
+    }
+  #endif
 }
 
 inline void notifyAll(Thread* t, object o)
@@ -3171,11 +3300,14 @@ inline void notifyAll(Thread* t, object o)
             objectHash(t, o));
   }
 
-  if (m and m->owner() == t) {
-    monitorNotifyAll(t, m);
-  } else {
-    throwNew(t, GcIllegalMonitorStateException::Type);
-  }
+  //mymod
+  #if !_cph_os_ems
+    if (m and m->owner() == t) {
+      monitorNotifyAll(t, m);
+    } else {
+      throwNew(t, GcIllegalMonitorStateException::Type);
+    }
+  #endif
 }
 
 inline void interrupt(Thread* t, Thread* target)
@@ -3702,13 +3834,15 @@ inline GcClass* primitiveClass(Thread* t, char name)
   }
 }
 
-inline void registerNative(Thread* t, GcMethod* method, void* function)
+//mymod: added "fast"
+inline void registerNative(Thread* t, GcMethod* method, void* function
+  , uint8_t fast)
 {
   PROTECT(t, method);
 
   expect(t, method->flags() & ACC_NATIVE);
 
-  GcNative* native = makeNative(t, function, false);
+  GcNative* native = makeNative(t, function, fast);
   PROTECT(t, native);
 
   GcMethodRuntimeData* runtimeData = getMethodRuntimeData(t, method);
@@ -3718,6 +3852,12 @@ inline void registerNative(Thread* t, GcMethod* method, void* function)
   storeStoreMemoryBarrier();
 
   runtimeData->setNative(t, native);
+}
+
+//mymod
+inline void registerNative(Thread* t, GcMethod* method, void* function)
+{
+  registerNative(t, method, function, false);
 }
 
 inline void unregisterNatives(Thread* t, GcClass* c)

@@ -28,6 +28,18 @@ extern "C" void NO_RETURN vmJump(void* address,
                                  uintptr_t returnLow,
                                  uintptr_t returnHigh);
 
+//mymod
+#define _myavn_vmjump
+void inline vmJump__(void* address UNUSED,
+                                 void* frame UNUSED,
+                                 void* stack UNUSED,
+                                 void* thread UNUSED,
+                                 uintptr_t returnLow UNUSED,
+                                 uintptr_t returnHigh UNUSED)
+{
+  ;
+}
+
 namespace vm {
 
 inline void compileTimeMemoryBarrier()
@@ -45,6 +57,9 @@ inline void compileTimeMemoryBarrier()
 #include "x86.h"
 #elif (defined ARCH_arm) || (defined ARCH_arm64)
 #include "arm.h"
+//mymod
+#elif defined ARCH_ems
+#include "ems.h"
 #else
 #error unsupported architecture
 #endif

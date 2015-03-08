@@ -86,8 +86,15 @@ namespace posix {
 
 using namespace vm;
 
+//mymod
+#ifndef ARCH_ems
 void handleSignal(int signal, siginfo_t*, void* context)
+#else
+void handleSignal(int, siginfo_t*, void*)
+#endif // ifndef ARCH_ems
 {
+//mymod
+#ifndef ARCH_ems
   ucontext_t* c = static_cast<ucontext_t*>(context);
 
   void* ip = reinterpret_cast<void*>(IP_REGISTER(c));
@@ -145,6 +152,7 @@ void handleSignal(int signal, siginfo_t*, void* context)
   default:
     crash();
   }
+#endif // ifndef ARCH_ems
 }
 
 }  // namespace posix

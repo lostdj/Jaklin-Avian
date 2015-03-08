@@ -127,6 +127,23 @@ public class Vector<T> extends AbstractList<T> implements java.io.Serializable, 
     return new Collections.IteratorEnumeration(iterator());
   }
 
+	//mymod: added
+	//+stolen ojdk
+	public synchronized T firstElement() {
+		if (size() == 0) {
+			throw new NoSuchElementException();
+		}
+		return get(0);
+	}
+
+	public synchronized T lastElement() {
+		if (size() == 0) {
+			throw new NoSuchElementException();
+		}
+		return get(size() - 1);
+	}
+	//-stolen ojdk
+
   public synchronized Object clone() {
     Vector copy = new Vector(size());
     for (T t : this) {

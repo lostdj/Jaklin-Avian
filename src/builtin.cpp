@@ -211,7 +211,7 @@ extern "C" AVIAN_EXPORT int64_t JNICALL
 
 extern "C" AVIAN_EXPORT int64_t JNICALL
     Avian_avian_SystemClassLoader_resourceURLPrefix(Thread* t,
-                                                    object,
+                                                    object o,
                                                     uintptr_t* arguments)
 {
   GcClassLoader* loader
@@ -964,10 +964,13 @@ extern "C" AVIAN_EXPORT int64_t JNICALL
 {
   object o = reinterpret_cast<object>(arguments[1]);
   int64_t offset;
-  memcpy(&offset, arguments + 2, 8);
+  //mymod
+  doifdef(_cph_os_ems,
+    (offset = *((int64_t*)(arguments + 2))),
+    (memcpy(&offset, arguments + 2, 8)));
 
   object lock;
-  if (BytesPerWord < 8) {
+  if (/*mymod*/!isdef(_cph_os_ems) && BytesPerWord < 8) {
     if (objectClass(t, o)->arrayDimensions()) {
       lock = objectClass(t, o);
     } else {
@@ -981,7 +984,7 @@ extern "C" AVIAN_EXPORT int64_t JNICALL
 
   int64_t result = fieldAtOffset<int64_t>(o, offset);
 
-  if (BytesPerWord < 8) {
+  if (/*mymod*/!isdef(_cph_os_ems) && BytesPerWord < 8) {
     release(t, lock);
   } else {
     loadMemoryBarrier();

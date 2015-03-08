@@ -137,6 +137,10 @@ void* resolveNativeMethod(Thread* t,
 {
   for (System::Library* lib = t->m->libraries; lib; lib = lib->next()) {
     void* p = lib->resolve(undecorated);
+		//mymod
+		#ifdef _myavn_log_methresolve
+			fprintf(stderr, "myavn: meth resolve: %s | %s\n", undecorated, decorated);
+		#endif
     if (p) {
       return p;
     } else {

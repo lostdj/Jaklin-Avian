@@ -1,5 +1,7 @@
 package dalvik.system;
 
 public class BaseDexClassLoader extends ClassLoader {
-  public native String getLdLibraryPath();
+	//mymod not implemented in native
+  // public native String getLdLibraryPath();
+  public String getLdLibraryPath() {return "";};
 }

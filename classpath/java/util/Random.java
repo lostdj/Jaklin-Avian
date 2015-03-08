@@ -46,12 +46,12 @@ public class Random {
     if (limit <= 0) {
       throw new IllegalArgumentException();
     }
-    
+
     if ((limit & -limit) == limit) {
       // limit is a power of two
       return (int) ((limit * (long) next(31)) >> 31);
     }
-    
+
     int bits;
     int value;
     do {
@@ -80,6 +80,13 @@ public class Random {
   public long nextLong() {
     return ((long) next(32) << 32) + next(32);
   }
+
+	//mymod
+	//+stolen ojdk
+	public float nextFloat() {
+		return next(24) / ((float)(1 << 24));
+	}
+	//-stolen ojdk
 
   public double nextDouble() {
     return (((long) next(26) << 27) + next(27)) / (double) (1L << 53);

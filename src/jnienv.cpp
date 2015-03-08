@@ -16,6 +16,9 @@
 
 #include <avian/util/runtime-array.h>
 
+#include <myavn/jni-args.h>
+#include <myavn/embeddedres.h>
+
 using namespace vm;
 
 namespace {
@@ -3088,7 +3091,8 @@ uint64_t registerNatives(Thread* t, uintptr_t* arguments)
         // case, but that would prevent using a code shrinker like
         // ProGuard effectively.  Instead, we just ignore it.
 
-        if (false) {
+        //mymod
+        /*if (false) */{
           fprintf(stderr,
                   "not found: %s.%s%s\n",
                   (*c)->vmClass()->name()->body().begin(),
@@ -3097,7 +3101,7 @@ uint64_t registerNatives(Thread* t, uintptr_t* arguments)
           abort(t);
         }
       } else {
-        registerNative(t, method, methods[i].function);
+        registerNative(t, method, methods[i].function, /*mymod*/true);
       }
     }
   }
@@ -3601,31 +3605,55 @@ extern "C" AVIAN_EXPORT jint JNICALL JNI_GetDefaultJavaVMInitArgs(void*)
 }
 
 extern "C" AVIAN_EXPORT jint JNICALL
-    JNI_GetCreatedJavaVMs(Machine**, jsize, jsize*)
+  JNI_GetCreatedJavaVMs(
+    //mymod
+    doifdef(_cph_os_ems, cph::jni::JavaVM**, Machine** m),
+    jsize, jsize*)
 {
   // todo
   return -1;
 }
 
+//doifdef(_cph_os_ems, , extern "C")
 extern "C" AVIAN_EXPORT jint JNICALL
-    JNI_CreateJavaVM(Machine** m, Thread** t, void* args)
+  JNI_CreateJavaVM(
+    //mymod
+    doifdef(_cph_os_ems, cph::jni::JavaVM** m_, Machine** m),
+    doifdef(_cph_os_ems, void **penv_, Thread** t),
+    void* args)
 {
-  local::JavaVMInitArgs* a = static_cast<local::JavaVMInitArgs*>(args);
+  //mymod
+  doifdef(_cph_os_ems, Machine **m = (Machine**)m_);
+  doifdef(_cph_os_ems, Thread **t = (Thread**)penv_);
 
+  local::JavaVMInitArgs* a = static_cast<local::JavaVMInitArgs*>(args);
+  int anoptions = a->nOptions;
+
+  //mymod
   unsigned heapLimit = 0;
   unsigned stackLimit = 0;
   const char* bootLibraries = 0;
-  const char* classpath = 0;
   const char* javaHome = AVIAN_JAVA_HOME;
   const char* embedPrefix = AVIAN_EMBED_PREFIX;
   const char* bootClasspathPrepend = "";
   const char* bootClasspath = 0;
+  myavn::embeddedres *embBootCp = 0;
   const char* bootClasspathAppend = "";
   const char* crashDumpDirectory = 0;
 
+  const char* classpath = 0;
+  // myavn::embeddedres *embAppCp = 0;
+  RUNTIME_ARRAY(myavn::embeddedres*, embAppCp, a->nOptions + 1);
+  RUNTIME_ARRAY_BODY(embAppCp)[0] = 0;
+
   unsigned propertyCount = 0;
 
+//mymod
+#ifndef _myavn_disablejvminitargs
   for (int i = 0; i < a->nOptions; ++i) {
+    if (a->options[i].extraInfo)
+      continue;
+
     if (strncmp(a->options[i].optionString, "-X", 2) == 0) {
       const char* p = a->options[i].optionString + 2;
       if (strncmp(p, "mx", 2) == 0) {
@@ -3676,14 +3704,30 @@ extern "C" AVIAN_EXPORT jint JNICALL
       ++propertyCount;
     }
   }
+#endif
+
+  //mymod
+  myavn::embeddedres **embAppCpPtr = RUNTIME_ARRAY_BODY(embAppCp);
+  for(int i = 0; i < a->nOptions; ++i)
+    if(!a->options[i].extraInfo)
+      continue;
+    elif(myavn::jniarg::bootcp.eq(a->options[i].optionString))
+      embBootCp = static_cast<myavn::embeddedres*>(a->options[i].extraInfo);
+    elif(myavn::jniarg::appcp.eq(a->options[i].optionString))
+    {
+      *embAppCpPtr = static_cast<myavn::embeddedres*>(a->options[i].extraInfo);
+      ++embAppCpPtr;
+      *embAppCpPtr = 0;
+      //embAppCp = static_cast<myavn::embeddedres*>(a->options[i].extraInfo);
+    }
 
   if (heapLimit == 0)
-    heapLimit = 128 * 1024 * 1024;
+    heapLimit = /*mymod*/1024/*128*/ * 1024 * 1024;
 
   if (stackLimit == 0)
-    stackLimit = 128 * 1024;
+    stackLimit = /*mymod*/512/*128*/ * 1024;
 
-  bool addClasspathProperty = classpath == 0;
+  bool addClasspathProperty = (classpath == 0 && *RUNTIME_ARRAY_BODY(embAppCp) == 0);
   if (addClasspathProperty) {
     classpath = ".";
     ++propertyCount;
@@ -3693,39 +3737,60 @@ extern "C" AVIAN_EXPORT jint JNICALL
   Heap* h = makeHeap(s, heapLimit);
   Classpath* c = makeClasspath(s, h, javaHome, embedPrefix);
 
-  if (bootClasspath == 0) {
+  if (bootClasspath == 0 && embBootCp == 0) {
     bootClasspath = c->bootClasspath();
   }
 
-  unsigned bcppl = strlen(bootClasspathPrepend);
-  unsigned bcpl = strlen(bootClasspath);
-  unsigned bcpal = strlen(bootClasspathAppend);
-
-  unsigned bootClasspathBufferSize = bcppl + bcpl + bcpal + 3;
-  RUNTIME_ARRAY(char, bootClasspathBuffer, bootClasspathBufferSize);
-  char* bootClasspathPointer = RUNTIME_ARRAY_BODY(bootClasspathBuffer);
-  if (bootClasspathBufferSize > 3) {
-    local::append(&bootClasspathPointer,
-                  bootClasspathPrepend,
-                  bcppl,
-                  bcpl + bcpal ? PATH_SEPARATOR : 0);
-    local::append(
-        &bootClasspathPointer, bootClasspath, bcpl, bcpal ? PATH_SEPARATOR : 0);
-    local::append(&bootClasspathPointer, bootClasspathAppend, bcpal, 0);
-  } else {
-    *RUNTIME_ARRAY_BODY(bootClasspathBuffer) = 0;
-  }
+  Finder* bf;
+  Finder* af;
 
   char* bootLibrary = bootLibraries ? strdup(bootLibraries) : 0;
   char* bootLibraryEnd = bootLibrary ? strchr(bootLibrary, PATH_SEPARATOR) : 0;
   if (bootLibraryEnd)
     *bootLibraryEnd = 0;
 
-  Finder* bf
-      = makeFinder(s, h, RUNTIME_ARRAY_BODY(bootClasspathBuffer), bootLibrary);
-  Finder* af = makeFinder(s, h, classpath, bootLibrary);
+  if(bootClasspath)
+  {
+    unsigned bcppl = strlen(bootClasspathPrepend);
+    unsigned bcpl = strlen(bootClasspath);
+    unsigned bcpal = strlen(bootClasspathAppend);
+
+    unsigned bootClasspathBufferSize = bcppl + bcpl + bcpal + 3;
+    RUNTIME_ARRAY(char, bootClasspathBuffer, bootClasspathBufferSize);
+    char* bootClasspathPointer = RUNTIME_ARRAY_BODY(bootClasspathBuffer);
+    if (bootClasspathBufferSize > 3) {
+      local::append(&bootClasspathPointer,
+                    bootClasspathPrepend,
+                    bcppl,
+                    bcpl + bcpal ? PATH_SEPARATOR : 0);
+      local::append(
+          &bootClasspathPointer, bootClasspath, bcpl, bcpal ? PATH_SEPARATOR : 0);
+      local::append(&bootClasspathPointer, bootClasspathAppend, bcpal, 0);
+    } else {
+      *RUNTIME_ARRAY_BODY(bootClasspathBuffer) = 0;
+    }
+
+    bf = makeFinder(s, h, RUNTIME_ARRAY_BODY(bootClasspathBuffer), bootLibrary);
+  }
+  else
+  {
+    bf = makeFinder(s, h, static_cast<uint8_t*>(embBootCp->data), embBootCp->size);
+    --anoptions;//--a->nOptions;
+  }
+
+  if(classpath)
+  {
+    af = makeFinder(s, h, classpath, bootLibrary);
+  }
+  else
+  {
+    af = makeFinder(s, h, RUNTIME_ARRAY_BODY(embAppCp));
+    --anoptions;//--a->nOptions;
+  }
+
   if (bootLibrary)
     free(bootLibrary);
+
   Processor* p = makeProcessor(s, h, crashDumpDirectory, true);
 
   // reserve space for avian.version and file.encoding:
@@ -3737,23 +3802,27 @@ extern "C" AVIAN_EXPORT jint JNICALL
   const char** propertyPointer = properties;
 
   const char** arguments = static_cast<const char**>(
-      h->allocate(sizeof(const char*) * a->nOptions));
+      h->allocate(sizeof(const char*) * anoptions/*a->nOptions*/));
 
   const char** argumentPointer = arguments;
 
-  for (int i = 0; i < a->nOptions; ++i) {
+  for (int i = 0; i < anoptions/*a->nOptions*/; ++i) {
+    if (a->options[i].extraInfo)
+      continue;
+
     if (strncmp(a->options[i].optionString, "-D", 2) == 0) {
       *(propertyPointer++) = a->options[i].optionString + 2;
     }
     *(argumentPointer++) = a->options[i].optionString;
   }
 
-  unsigned cpl = strlen(classpath);
+  unsigned cpl = classpath ? strlen(classpath) : 0;
   RUNTIME_ARRAY(char, classpathProperty, cpl + strlen(CLASSPATH_PROPERTY) + 2);
   if (addClasspathProperty) {
     char* p = RUNTIME_ARRAY_BODY(classpathProperty);
     local::append(&p, CLASSPATH_PROPERTY, strlen(CLASSPATH_PROPERTY), '=');
-    local::append(&p, classpath, cpl, 0);
+    if(classpath)
+      local::append(&p, classpath, cpl, 0);
     *(propertyPointer++) = RUNTIME_ARRAY_BODY(classpathProperty);
   }
 
@@ -3772,8 +3841,9 @@ extern "C" AVIAN_EXPORT jint JNICALL
                                                   properties,
                                                   propertyCount,
                                                   arguments,
-                                                  a->nOptions,
-                                                  stackLimit);
+                                                  anoptions,
+                                                  stackLimit,
+                                        cph::rcast<cph::jni::JavaVMInitArgs*>(a));
 
   h->free(properties, sizeof(const char*) * propertyCount);
 

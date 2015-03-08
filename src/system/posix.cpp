@@ -59,6 +59,10 @@ typedef struct ucontext {
 
 #define ACQUIRE(x) MutexResource MAKE_NAME(mutexResource_)(x)
 
+#ifdef ARCH_ems
+  #define PATH_MAX 2048
+#endif
+
 using namespace vm;
 using namespace avian::util;
 
@@ -125,7 +129,11 @@ void pathOfExecutable(System* s, const char** retBuf, unsigned* size)
 #endif
 }
 
-const bool Verbose = false;
+#ifdef _myavn_log_sysverbose
+  const bool Verbose = true;
+#else
+  const bool Verbose = false;
+#endif
 
 const unsigned Notified = 1 << 0;
 
@@ -866,16 +874,20 @@ class MySystem : public System {
     }
   }
 
-  virtual Status load(System::Library** lib, const char* name)
+  virtual Status load(System::Library** , const char* name)
   {
     unsigned nameLength = (name ? strlen(name) : 0);
     bool isMain = name == 0;
     if (isMain) {
       pathOfExecutable(this, &name, &nameLength);
     }
-    void* p = dlopen(name, RTLD_LAZY | RTLD_LOCAL);
-
-    if (p) {
+    void* p = 0;
+    #ifndef ARCH_ems
+      p = dlopen(name, RTLD_LAZY | RTLD_LOCAL);
+      if (p) {
+    #else
+      if (true) {
+    #endif
       if (Verbose) {
         fprintf(stderr, "open %s as %p\n", name, p);
       }
@@ -891,8 +903,9 @@ class MySystem : public System {
         n = 0;
       }
 
-      *lib = new (allocate(this, sizeof(Library)))
-          Library(this, p, n, nameLength, isMain);
+      //mymod
+//      *lib = new (allocate(this, sizeof(Library)))
+//          Library(this, p, n, nameLength, isMain);
 
       return 0;
     } else {
@@ -955,8 +968,15 @@ class MySystem : public System {
   System::Monitor* visitLock;
 };
 
+//mymod
+#ifndef ARCH_ems
 void handleSignal(int signal, siginfo_t*, void* context)
+#else
+void handleSignal(int, siginfo_t*, void*)
+#endif // ifndef ARCH_ems
 {
+//mymod
+#ifndef ARCH_ems
   ucontext_t* c = static_cast<ucontext_t*>(context);
 
   void* ip = reinterpret_cast<void*>(IP_REGISTER(c));
@@ -981,6 +1001,7 @@ void handleSignal(int signal, siginfo_t*, void* context)
   default:
     abort();
   }
+#endif // ifndef ARCH_ems
 }
 
 }  // namespace

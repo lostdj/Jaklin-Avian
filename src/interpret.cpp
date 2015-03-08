@@ -24,33 +24,24 @@
 using namespace vm;
 using namespace avian::system;
 
+#include <myavn/ee1.h>
+#include <myavn/jni-meth.h>
+
+//mymod
+#include <cph/debug_print_simple.h>
+
+doifdef(_myavn_log_eeins, extern "C" bool logeeins = false);
+
 namespace local {
 
-const unsigned FrameBaseOffset = 0;
+//mymod
+//const unsigned FrameBaseOffset = 0;
 const unsigned FrameNextOffset = 1;
 const unsigned FrameMethodOffset = 2;
 const unsigned FrameIpOffset = 3;
 const unsigned FrameFootprint = 4;
 
-class Thread : public vm::Thread {
- public:
-  Thread(Machine* m, GcThread* javaThread, vm::Thread* parent)
-      : vm::Thread(m, javaThread, parent),
-        ip(0),
-        sp(0),
-        frame(-1),
-        code(0),
-        stackPointers(0)
-  {
-  }
-
-  unsigned ip;
-  unsigned sp;
-  int frame;
-  GcCode* code;
-  List<unsigned>* stackPointers;
-  uintptr_t stack[0];
-};
+//mymod removed Thread def
 
 inline void pushObject(Thread* t, object o)
 {
@@ -58,7 +49,10 @@ inline void pushObject(Thread* t, object o)
     fprintf(stderr, "push object %p at %d\n", o, t->sp);
   }
 
-  assertT(t, t->sp + 1 < stackSizeInWords(t) / 2);
+  #ifdef _myavn_assertstack
+    assertT(t, t->sp + 1 < stackSizeInWords(t) / 2);
+  #endif
+
   t->stack[(t->sp * 2)] = ObjectTag;
   t->stack[(t->sp * 2) + 1] = reinterpret_cast<uintptr_t>(o);
   ++t->sp;
@@ -70,7 +64,10 @@ inline void pushInt(Thread* t, uint32_t v)
     fprintf(stderr, "push int %d at %d\n", v, t->sp);
   }
 
-  assertT(t, t->sp + 1 < stackSizeInWords(t) / 2);
+  #ifdef _myavn_assertstack
+    assertT(t, t->sp + 1 < stackSizeInWords(t) / 2);
+  #endif
+
   t->stack[(t->sp * 2)] = IntTag;
   t->stack[(t->sp * 2) + 1] = v;
   ++t->sp;
@@ -106,7 +103,10 @@ inline object popObject(Thread* t)
             t->sp - 1);
   }
 
-  assertT(t, t->stack[(t->sp - 1) * 2] == ObjectTag);
+  #ifdef _myavn_assertstack
+    assertT(t, t->stack[(t->sp - 1) * 2] == ObjectTag);
+  #endif
+
   return reinterpret_cast<object>(t->stack[((--t->sp) * 2) + 1]);
 }
 
@@ -114,12 +114,15 @@ inline uint32_t popInt(Thread* t)
 {
   if (DebugStack) {
     fprintf(stderr,
-            "pop int %" LD " at %d\n",
+            "pop int %" ULD " at %d\n",
             t->stack[((t->sp - 1) * 2) + 1],
             t->sp - 1);
   }
 
-  assertT(t, t->stack[(t->sp - 1) * 2] == IntTag);
+  #ifdef _myavn_assertstack
+    assertT(t, t->stack[(t->sp - 1) * 2] == IntTag);
+  #endif
+
   return t->stack[((--t->sp) * 2) + 1];
 }
 
@@ -158,8 +161,11 @@ inline object peekObject(Thread* t, unsigned index)
             index);
   }
 
-  assertT(t, index < stackSizeInWords(t) / 2);
-  assertT(t, t->stack[index * 2] == ObjectTag);
+  #ifdef _myavn_assertstack
+    assertT(t, index < stackSizeInWords(t) / 2);
+    assertT(t, t->stack[index * 2] == ObjectTag);
+  #endif
+
   return reinterpret_cast<object>(t->stack[(index * 2) + 1]);
 }
 
@@ -167,11 +173,14 @@ inline uint32_t peekInt(Thread* t, unsigned index)
 {
   if (DebugStack) {
     fprintf(
-        stderr, "peek int %" LD " at %d\n", t->stack[(index * 2) + 1], index);
+        stderr, "peek int %" ULD " at %d\n", t->stack[(index * 2) + 1], index);
   }
 
-  assertT(t, index < stackSizeInWords(t) / 2);
-  assertT(t, t->stack[index * 2] == IntTag);
+  #ifdef _myavn_assertstack
+    assertT(t, index < stackSizeInWords(t) / 2);
+    assertT(t, t->stack[index * 2] == IntTag);
+  #endif
+
   return t->stack[(index * 2) + 1];
 }
 
@@ -222,7 +231,10 @@ inline void pokeLong(Thread* t, unsigned index, uint64_t value)
 inline object* pushReference(Thread* t, object o)
 {
   if (o) {
-    expect(t, t->sp + 1 < stackSizeInWords(t) / 2);
+    #ifdef _myavn_assertstack
+      expect(t, t->sp + 1 < stackSizeInWords(t) / 2);
+    #endif
+
     pushObject(t, o);
     return reinterpret_cast<object*>(t->stack + ((t->sp - 1) * 2) + 1);
   } else {
@@ -402,62 +414,83 @@ void pushResult(Thread* t, unsigned returnCode, uint64_t result, bool indirect)
   switch (returnCode) {
   case ByteField:
   case BooleanField:
-    if (DebugRun) {
-      fprintf(stderr, "result: %d\n", static_cast<int8_t>(result));
+    //mymod
+    #ifdef _myavn_log_eenativeinvoke
+    {
+      fprintf(stderr, "myavn: result: %d\n", static_cast<int8_t>(result));
     }
+    #endif
     pushInt(t, static_cast<int8_t>(result));
     break;
 
   case CharField:
-    if (DebugRun) {
-      fprintf(stderr, "result: %d\n", static_cast<uint16_t>(result));
+    //mymod
+    #ifdef _myavn_log_eenativeinvoke
+    {
+      fprintf(stderr, "myavn: result: %d\n", static_cast<uint16_t>(result));
     }
+    #endif
     pushInt(t, static_cast<uint16_t>(result));
     break;
 
   case ShortField:
-    if (DebugRun) {
-      fprintf(stderr, "result: %d\n", static_cast<int16_t>(result));
+    //mymod
+    #ifdef _myavn_log_eenativeinvoke
+    {
+      fprintf(stderr, "myavn: result: %d\n", static_cast<int16_t>(result));
     }
+    #endif
     pushInt(t, static_cast<int16_t>(result));
     break;
 
   case FloatField:
   case IntField:
-    if (DebugRun) {
-      fprintf(stderr, "result: %d\n", static_cast<int32_t>(result));
+    //mymod
+    #ifdef _myavn_log_eenativeinvoke
+    {
+      fprintf(stderr, "myavn: result: %d\n", static_cast<int32_t>(result));
     }
+    #endif
     pushInt(t, result);
     break;
 
   case DoubleField:
   case LongField:
-    if (DebugRun) {
+    //mymod
+    #ifdef _myavn_log_eenativeinvoke
+    {
       fprintf(stderr, "result: %" LLD "\n", result);
     }
+    #endif
     pushLong(t, result);
     break;
 
   case ObjectField:
     if (indirect) {
-      if (DebugRun) {
+      //mymod
+      #ifdef _myavn_log_eenativeinvoke
+      {
         fprintf(
             stderr,
-            "result: %p at %p\n",
+            "myavn: result: %p at %p\n",
             static_cast<uintptr_t>(result) == 0
                 ? 0
                 : *reinterpret_cast<object*>(static_cast<uintptr_t>(result)),
             reinterpret_cast<object*>(static_cast<uintptr_t>(result)));
       }
+      #endif
       pushObject(
           t,
           static_cast<uintptr_t>(result) == 0
               ? 0
               : *reinterpret_cast<object*>(static_cast<uintptr_t>(result)));
     } else {
-      if (DebugRun) {
-        fprintf(stderr, "result: %p\n", reinterpret_cast<object>(result));
+      //mymod
+      #ifdef _myavn_log_eenativeinvoke
+      {
+        fprintf(stderr, "myavn: result: %p\n", reinterpret_cast<object>(result));
       }
+      #endif
       pushObject(t, reinterpret_cast<object>(result));
     }
     break;
@@ -573,12 +606,15 @@ unsigned invokeNativeSlow(Thread* t, GcMethod* method, void* function)
   unsigned returnType = fieldType(t, returnCode);
   uint64_t result;
 
-  if (DebugRun) {
+  //mymod
+  #ifdef _myavn_log_eenativeinvoke
+  {
     fprintf(stderr,
-            "invoke native method %s.%s\n",
+            "myavn: invoke slow native method %s.%s\n",
             method->class_()->name()->body().begin(),
             method->name()->body().begin());
   }
+  #endif
 
   {
     ENTER(t, Thread::IdleState);
@@ -595,12 +631,15 @@ unsigned invokeNativeSlow(Thread* t, GcMethod* method, void* function)
                              returnType);
   }
 
-  if (DebugRun) {
+  //mymod
+  #ifdef _myavn_log_eenativeinvoke
+  {
     fprintf(stderr,
-            "return from native method %s.%s\n",
+            "myavn: return from slow native method %s.%s\n",
             frameMethod(t, t->frame)->class_()->name()->body().begin(),
             frameMethod(t, t->frame)->name()->body().begin());
   }
+  #endif
 
   popFrame(t);
 
@@ -622,7 +661,78 @@ unsigned invokeNative(Thread* t, GcMethod* method)
   resolveNative(t, method);
 
   GcNative* native = getMethodRuntimeData(t, method)->native();
-  if (native->fast()) {
+  //mymod
+  if (likely(not native->fast())) {
+    pushFrame(t, method);
+
+    uint64_t result;
+
+    #ifdef _myavn_log_eenativeinvoke
+    {
+      fprintf(stderr,
+              "myavn: invoke slow native method %s.%s\n",
+              method->class_()->name()->body().begin(),
+              method->name()->body().begin());
+    }
+    #endif
+
+    {
+      ENTER(t, Thread::IdleState);
+
+      bool noThrow = t->checkpoint->noThrow;
+      t->checkpoint->noThrow = true;
+      THREAD_RESOURCE(t, bool, noThrow, t->checkpoint->noThrow = noThrow);
+
+      if (method->flags() & ACC_STATIC) {
+        GcJclass* jc = 0;
+        PROTECT(t, jc);
+        jc = getJClass(t, method->class_());
+
+        if(method->returnCode() != VoidField)
+          result = reinterpret_cast<myavn::meth::SlowFunc>(native->function())
+            (t, cph::rcast<cph::uw>(&jc));
+        else
+          result = 0,
+          reinterpret_cast<myavn::meth::SlowVoidFunc>(native->function())
+            (t, cph::rcast<cph::uw>(&jc));
+      }
+      else {
+        if(method->returnCode() != VoidField)
+          result = reinterpret_cast<myavn::meth::SlowMeth>(native->function())
+            (t);
+        else
+          result = 0,
+          reinterpret_cast<myavn::meth::SlowVoidMeth>(native->function())
+            (t);
+      }
+    }
+
+    //mymod
+    #ifdef _myavn_log_eenativeinvoke
+    {
+      fprintf(stderr,
+              "myavn: return from slow native method %s.%s\n",
+              frameMethod(t, t->frame)->class_()->name()->body().begin(),
+              frameMethod(t, t->frame)->name()->body().begin());
+    }
+    #endif
+
+    popFrame(t);
+
+    if (UNLIKELY(t->exception)) {
+      GcThrowable* exception = t->exception;
+      t->exception = 0;
+      throw_(t, exception);
+    }
+
+    unsigned returnCode = method->returnCode();
+
+    pushResult(t, returnCode, result, true);
+
+    return returnCode;
+  }
+  else {
+//  if (native->fast()) {
     pushFrame(t, method);
 
     uint64_t result;
@@ -641,23 +751,43 @@ unsigned invokeNative(Thread* t, GcMethod* method)
       marshalArguments(
           t, RUNTIME_ARRAY_BODY(args) + argOffset, 0, sp, method, true);
 
-      if(method->returnCode() != VoidField) {
+      //mymod
+      #ifdef _myavn_log_eenativeinvoke
+      {
+        fprintf(stderr,
+                "myavn: invoke fast native method %s.%s\n",
+                method->class_()->name()->body().begin(),
+                method->name()->body().begin());
+      }
+      #endif
+
+      //mymod
+// 			if(method->spec()->body().begin()[method->spec()->length()-2] != 'V')
+      if(method->returnCode() != VoidField)
         result = reinterpret_cast<FastNativeFunction>(native->function())(
-          t, method, RUNTIME_ARRAY_BODY(args));
-      }
-      else {
-        result = 0;
+          t, reinterpret_cast<object>(method), RUNTIME_ARRAY_BODY(args));
+      else
+        result = 0,
         reinterpret_cast<FastVoidNativeFunction>(native->function())(
-          t, method, RUNTIME_ARRAY_BODY(args));
+          t, reinterpret_cast<object>(method), RUNTIME_ARRAY_BODY(args));
+
+      //mymod
+      #ifdef _myavn_log_eenativeinvoke
+      {
+        fprintf(stderr,
+                "myavn: return from fast native method %s.%s\n",
+                frameMethod(t, t->frame)->class_()->name()->body().begin(),
+                frameMethod(t, t->frame)->name()->body().begin());
       }
+      #endif
     }
 
     pushResult(t, method->returnCode(), result, false);
 
     return method->returnCode();
-  } else {
+  } /*else {
     return invokeNativeSlow(t, method, native->function());
-  }
+  }*/
 }
 
 inline void store(Thread* t, unsigned index)
@@ -784,15 +914,24 @@ object interpret3(Thread* t, const int base)
 loop:
   instruction = code->body()[ip++];
 
-  if (DebugRun) {
+  //mymod
+  #ifdef _myavn_log_eeins
+  if(logeeins)
+  {
     fprintf(stderr,
-            "ip: %d; instruction: 0x%x in %s.%s ",
+            "myavn: ip: %d; instruction: 0x%x in %s.%s ",
             ip - 1,
             instruction,
-            frameMethod(t, frame)->class_()->name()->body().begin(),
-            frameMethod(t, frame)->name()->body().begin());
+            frameMethod(t, frame)->class_() ?
+              (const char*)frameMethod(t, frame)->class_()->name()->body().begin() : "(null)",
+            frameMethod(t, frame)->name() ?
+              (const char*)frameMethod(t, frame)->name()->body().begin() : "(null)");
 
-    int line = findLineNumber(t, frameMethod(t, frame), ip);
+    int line;
+    if(!frameMethod(t, frame)->class_() || !frameMethod(t, frame)->name())
+      line = UnknownLine;
+    else
+      line = findLineNumber(t, frameMethod(t, frame), ip);
     switch (line) {
     case NativeLine:
       fprintf(stderr, "(native)\n");
@@ -804,6 +943,7 @@ loop:
       fprintf(stderr, "(line %d)\n", line);
     }
   }
+  #endif
 
   switch (instruction) {
   case aaload: {
@@ -1185,15 +1325,31 @@ loop:
     goto loop;
 
   case dastore: {
-    double value = popDouble(t);
+    //mymod
+    doifdef(_cph_os_ems,
+      uint64_t value = popLong(t),
+      double value = popDouble(t));
+    // double value = popDouble(t);
     int32_t index = popInt(t);
     object array = popObject(t);
 
     if (LIKELY(array)) {
       GcDoubleArray* a = cast<GcDoubleArray>(t, array);
       if (LIKELY(index >= 0 and static_cast<uintptr_t>(index) < a->length())) {
-        memcpy(&a->body()[index], &value, sizeof(uint64_t));
+        //mymod
+        // _cph_sprinte("*** dastore len1: %d\n", a->length());
+        doifdef(_cph_os_ems,
+          (a->setBodyElement(t, index, value)),
+          (memcpy(&a->body()[index], &value, sizeof(uint64_t))));
+        // memcpy(&a->body()[index], &value, sizeof(uint64_t));
+        // a->setBodyElement(t, index, value);
+        // a->body()[index] = value;
+        // _cph_sprinte("*** dastore len2: %d\n", a->length());
       } else {
+        //mymod
+        // _cph_sprinte("*** dastore err: %d\n", a->length());
+        // _cph_sprinte("*** dastore etc: %d %d %d\n", sizeof(uint64_t), DoubleArrayLength, DoubleArrayBody);
+        // vmPrintTrace(t);
         exception = makeThrowable(t,
                                   GcArrayIndexOutOfBoundsException::Type,
                                   "%d not in [0,%d)",
@@ -1439,14 +1595,24 @@ loop:
     goto loop;
 
   case fastore: {
-    float value = popFloat(t);
+    //mymod
+    doifdef(_cph_os_ems,
+      uint32_t value = popInt(t),
+      float value = popFloat(t));
+    // float value = popFloat(t);
     int32_t index = popInt(t);
     object array = popObject(t);
 
     if (LIKELY(array)) {
       GcFloatArray* a = cast<GcFloatArray>(t, array);
       if (LIKELY(index >= 0 and static_cast<uintptr_t>(index) < a->length())) {
-        memcpy(&a->body()[index], &value, sizeof(uint32_t));
+        //mymod
+        doifdef(_cph_os_ems,
+          (a->setBodyElement(t, index, value)),
+          (memcpy(&a->body()[index], &value, sizeof(uint32_t))));
+        // memcpy(&a->body()[index], &value, sizeof(uint32_t));
+        // a->setBodyElement(t, index, value);
+        // a->body()[index] = value;
       } else {
         exception = makeThrowable(t,
                                   GcArrayIndexOutOfBoundsException::Type,
@@ -1963,6 +2129,11 @@ loop:
   }
     goto loop;
 
+  case invokedynamic: {
+    _cph_sprinte("avn: unsupported op at :" _cph_line ", aborting.");
+    abort(t);
+  }
+
   case instanceof: {
     uint16_t index = codeReadInt16(t, code, ip);
 
@@ -2049,6 +2220,30 @@ loop:
     if (LIKELY(peekObject(t, sp - parameterFootprint))) {
       GcClass* class_ = objectClass(t, peekObject(t, sp - parameterFootprint));
       PROTECT(t, m);
+      //mymod
+//      initClass(t, class_);
+//      if(!class_->virtualTable())
+//      {
+//        if(m->class_()->virtualTable())
+//        {
+//          class_ = m->class_();
+//        }
+//        else
+//        {
+//          if(instanceOf(t,
+//              reinterpret_cast<GcClass*>(arrayBodyUnsafe(t, t->m->types, GcThrowable::Type)),
+//              class_))
+//          {
+//            exception = cast<GcThrowable>(t, peekObject(t, sp - parameterFootprint));
+//  //          goto throw_;
+//          }
+//          else
+//            exception = makeThrowable(t, GcNullPointerException::Type);
+
+//          goto throw_;
+//        }
+//      }
+      ///mymod
       PROTECT(t, class_);
 
       method = findVirtualMethod(t, m, class_);
@@ -2957,7 +3152,7 @@ back_branch:
   safePoint(t);
   goto loop;
 
-invoke : {
+invoke: {
   if (method->flags() & ACC_NATIVE) {
     invokeNative(t, method);
   } else {

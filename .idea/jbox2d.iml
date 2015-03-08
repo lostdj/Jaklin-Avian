@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/mytest/jbox2d">
+      <sourceFolder url="file://$MODULE_DIR$/mytest/jbox2d/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mytest/jbox2d/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mytest/jbox2d/jogl" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/mytest/jbox2d" />
+      <excludeFolder url="file://$MODULE_DIR$/mytest/jbox2d/src/main/native" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/mytest/jbox2d/gluegen-rt.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/mytest/jbox2d/gluegen.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/mytest/jbox2d/jogl-all-noawt.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar:///letmp/jogamp-all-platforms/jogl-java-src.zip!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>

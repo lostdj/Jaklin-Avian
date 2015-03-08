@@ -1328,8 +1328,9 @@ void set(uint32_t* mask, unsigned index)
 
 uint32_t typeObjectMask(Module& module, Class* cl)
 {
-  assert(cl->fixedSize + (cl->arrayField ? cl->arrayField->elementSize : 0)
-         < 32 * BytesPerWord);
+  // mymod
+  //assert(cl->fixedSize + (cl->arrayField ? cl->arrayField->elementSize : 0)
+  //       < 32 * BytesPerWord);
 
   uint32_t mask = 1;
 

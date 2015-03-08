@@ -116,6 +116,10 @@ typedef intptr_t intptr_alias_t;
 #define ARCH_x86_64
 #elif defined __arm__
 #define ARCH_arm
+//+mymod
+#elif defined AVIAN_EMS
+#define ARCH_ems
+//-mymod
 #elif defined __aarch64__
 #define ARCH_arm64
 #else
@@ -145,45 +149,48 @@ typedef intptr_t __attribute__((__may_alias__)) intptr_alias_t;
 #define LD PRIdPTR
 #define LX PRIxPTR
 #else
-#if (defined ARCH_x86_32) || (defined ARCH_arm)
-#define LD "ld"
-#if (defined _MSC_VER) || ((defined __MINGW32__) && __GNUC__ >= 4)
-#if (__GNUC__ == 4 && __GNUC_MINOR__ <= 8)
-#define LLD "I64d"
-#else
-#define LLD "lld"
-#endif
-#else
-#define LLD "lld"
-#endif
-#ifdef __APPLE__
-#define ULD "lu"
-#define LX "lx"
-#else
-#define LX "x"
-#define ULD "u"
-#endif
+#if (defined ARCH_x86_32) || (defined ARCH_arm) || (defined ARCH_ems)
+  #define LD "ld"
+  #if (defined _MSC_VER) || ((defined __MINGW32__) && __GNUC__ >= 4)
+    #if (__GNUC__ == 4 && __GNUC_MINOR__ <= 8)
+      #define LLD "I64d"
+    #else
+      #define LLD "lld"
+    #endif
+  #else
+    #define LLD "lld"
+  #endif
+  #ifdef __APPLE__
+    #define ULD "lu"
+    #define LX "lx"
+  #else
+    #define LX "x"
+    #define ULD "u"
+  #endif
 #elif defined ARCH_x86_64
-#define LD "ld"
-#define LX "lx"
-#if (defined _MSC_VER) || (defined __MINGW32__)
-#if (__GNUC__ == 4 && __GNUC_MINOR__ <= 8)
-#define LLD "I64d"
-#define ULD "I64x"
+  #define LD "ld"
+  #define LX "lx"
+  #if (defined _MSC_VER) || (defined __MINGW32__)
+    #if (__GNUC__ == 4 && __GNUC_MINOR__ <= 8)
+      #define LLD "I64d"
+      #define ULD "I64x"
+    #else
+      #define LLD "lld"
+      #define ULD "llu"
+    #endif
+  #else
+    #ifdef __APPLE__
+      #define LLD "lld"
+    #else
+      #define LLD "ld"
+    #endif
+    #define ULD "lu"
+  #endif
 #else
-#define LLD "lld"
-#define ULD "llu"
-#endif
-#else
-#ifdef __APPLE__
-#define LLD "lld"
-#else
-#define LLD "ld"
-#endif
-#define ULD "lu"
-#endif
-#else
-#error "Unsupported architecture"
+  //mymod
+  #ifndef AVIAN_EMS
+    #error "Unsupported architecture"
+  #endif
 #endif
 #endif
 
@@ -495,3 +502,7 @@ inline bool equal(const void* a, unsigned al, const void* b, unsigned bl)
 }  // namespace vm
 
 #endif  // AVIAN_COMMON_H
+
+//mymod
+#include <myavn/myavn.h>
+

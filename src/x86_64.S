@@ -26,6 +26,10 @@
    
 #ifdef __MINGW32__
 
+
+/*----------------------------------------*/
+
+
 .globl GLOBAL(vmNativeCall)
 GLOBAL(vmNativeCall):
    pushq %rbp
@@ -135,6 +139,10 @@ LOCAL(exit):
    popq %rbp
    ret
 
+
+/*----------------------------------------*/
+
+
 .globl GLOBAL(vmJump)
 GLOBAL(vmJump):
    movq   %rdx,%rbp
@@ -144,8 +152,14 @@ GLOBAL(vmJump):
    movq   %r9,%rbx
    jmp    *%rcx
 
+
+/*----------------------------------------*/
+
+
 #define VMRUN_FRAME_SIZE 80
-   
+
+/*mymod*/
+#ifndef _myavn_unwindex
 .globl GLOBAL(vmRun)
 GLOBAL(vmRun):
    // %rcx: function
@@ -169,7 +183,11 @@ GLOBAL(vmRun):
    movq   CHECKPOINT_THREAD(%r8),%rcx
    
    call   *%r11
-   
+#endif // #ifndef _myavn_unwindex
+
+/*----------------------------------------*/
+
+
 .globl GLOBAL(vmRun_returnAddress)
 GLOBAL(vmRun_returnAddress):
 

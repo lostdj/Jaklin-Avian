@@ -74,7 +74,7 @@ public class RandomAccessFile {
     this.position = position + count;
     return count;
   }
-  
+
   public int read(byte b[], int off, int len) throws IOException {
     if(b == null)
 	  throw new IllegalArgumentException();
@@ -90,7 +90,7 @@ public class RandomAccessFile {
 	position += bytesRead;
 	return bytesRead;
   }
-  
+
   public int read(byte b[]) throws IOException {
     if(b == null)
 	  throw new IllegalArgumentException();
@@ -125,13 +125,122 @@ public class RandomAccessFile {
       n += count;
     } while (n < len);
   }
-  
+
+	//mymod
+	//+stolen ojdk
+	public final boolean readBoolean() throws IOException {
+		int ch = this.read();
+		if (ch < 0)
+			throw new EOFException();
+		return (ch != 0);
+	}
+
+	public final byte readByte() throws IOException {
+		int ch = this.read();
+		if (ch < 0)
+			throw new EOFException();
+		return (byte)(ch);
+	}
+
+	public final int readUnsignedByte() throws IOException {
+		int ch = this.read();
+		if (ch < 0)
+			throw new EOFException();
+		return ch;
+	}
+
+	public final short readShort() throws IOException {
+		int ch1 = this.read();
+		int ch2 = this.read();
+		if ((ch1 | ch2) < 0)
+			throw new EOFException();
+		return (short)((ch1 << 8) + (ch2 << 0));
+	}
+
+	public final int readUnsignedShort() throws IOException {
+		int ch1 = this.read();
+		int ch2 = this.read();
+		if ((ch1 | ch2) < 0)
+			throw new EOFException();
+		return (ch1 << 8) + (ch2 << 0);
+	}
+
+	public final char readChar() throws IOException {
+		int ch1 = this.read();
+		int ch2 = this.read();
+		if ((ch1 | ch2) < 0)
+			throw new EOFException();
+		return (char)((ch1 << 8) + (ch2 << 0));
+	}
+
+	public final int readInt() throws IOException {
+		int ch1 = this.read();
+		int ch2 = this.read();
+		int ch3 = this.read();
+		int ch4 = this.read();
+		if ((ch1 | ch2 | ch3 | ch4) < 0)
+			throw new EOFException();
+		return ((ch1 << 24) + (ch2 << 16) + (ch3 << 8) + (ch4 << 0));
+	}
+
+	public final long readLong() throws IOException {
+		return ((long)(readInt()) << 32) + (readInt() & 0xFFFFFFFFL);
+	}
+
+	public final float readFloat() throws IOException {
+		return Float.intBitsToFloat(readInt());
+	}
+
+	public final double readDouble() throws IOException {
+		return Double.longBitsToDouble(readLong());
+	}
+
+	public final String readLine() throws IOException {
+		StringBuffer input = new StringBuffer();
+		int c = -1;
+		boolean eol = false;
+
+		while (!eol) {
+			switch (c = read()) {
+				case -1:
+				case '\n':
+					eol = true;
+					break;
+				case '\r':
+					eol = true;
+					long cur = getFilePointer();
+					if ((read()) != '\n') {
+						seek(cur);
+					}
+					break;
+				default:
+					input.append((char)c);
+					break;
+			}
+		}
+
+		if ((c == -1) && (input.length() == 0)) {
+			return null;
+		}
+		return input.toString();
+	}
+	//-stolen ojdk
+
   public void readFully(byte b[]) throws IOException {
     readFully(b, 0, b.length);
   }
 
   private static native int readBytes(long peer, long position, byte[] buffer,
                                   int offset, int length);
+
+	//mymod: added
+	private static native int read(long peer, long position) throws IOException;
+
+	//mymod: added
+	public int read() throws IOException
+	{
+		return read(peer, position++);
+	}
 
   public void write(int b) throws IOException {
     int count = writeBytes(peer, position, new byte[] { (byte)b }, 0, 1);

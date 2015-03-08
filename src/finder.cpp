@@ -20,13 +20,22 @@
 #include "avian/lzma.h"
 #include "avian/append.h"
 
+//mymod
+#include <myavn/embeddedres.h>
+
 using namespace vm;
 using namespace avian::util;
 
 namespace {
 
-const bool DebugFind = false;
-const bool DebugStat = false;
+//mymod
+#ifdef _myavn_log_finder
+  const bool DebugFind = true;
+  const bool DebugStat = true;
+#else
+  const bool DebugFind = false;
+  const bool DebugStat = false;
+#endif
 
 class Element {
  public:
@@ -502,12 +511,15 @@ class JarElement : public Element {
         allocator(allocator),
         originalName(0),
         name(0),
-        urlPrefix_(name ? append(allocator, "jar:file:", name, "!/") : 0),
-        sourceUrl_(name ? append(allocator, "file:", name) : 0),
         region(new (allocator->allocate(sizeof(PointerRegion)))
                PointerRegion(s, allocator, jarData, jarLength)),
         index(JarIndex::open(s, allocator, region))
   {
+    //mymod
+    char addr[20];
+    vm::snprintf(addr, 20, (_cph_arch_64 ? "%llu" : "%lu"), (cph::uw)region);
+    urlPrefix_ = append(allocator, "jar:mem:", addr, "!/");
+    sourceUrl_ = append(allocator, "mem:", addr);
   }
 
   virtual Element::Iterator* iterator()
@@ -991,6 +1003,28 @@ class MyFinder : public Finder {
   {
   }
 
+  //mymod
+  MyFinder(System* system,
+           Alloc* allocator,
+           myavn::embeddedres **embCp)
+      : system(system),
+        allocator(allocator),
+        path_(0),
+        pathString(0)
+  {
+    Element *l = null;
+    while(*embCp)
+    {
+      add(&path_, &l,
+        new(allocator->allocate(sizeof(JarElement)))
+          JarElement(system, allocator, static_cast<uint8_t*>((*embCp)->data),
+            (*embCp)->size));
+      l->next = null;
+
+      ++embCp;
+    }
+  }
+
   virtual IteratorImp* iterator()
   {
     return new (allocator->allocate(sizeof(MyIterator)))
@@ -1099,6 +1133,13 @@ Finder* makeFinder(System* s,
                    unsigned jarLength)
 {
   return new (a->allocate(sizeof(MyFinder))) MyFinder(s, a, jarData, jarLength);
+}
+
+Finder* makeFinder(System* s,
+                   avian::util::Alloc* a,
+                   myavn::embeddedres **embCp)
+{
+  return new (a->allocate(sizeof(MyFinder))) MyFinder(s, a, embCp);
 }
 
 }  // namespace vm
